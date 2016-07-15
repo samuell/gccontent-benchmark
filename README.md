@@ -1,0 +1,3 @@
+# Comparing language string processing performance with a GC Count
+
+- More info soon ...
