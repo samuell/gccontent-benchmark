@@ -80,7 +80,7 @@ golang.000.time:
 	rm .$@.tmp
 
 fpc.000.time:
-	bash -c 'cd fpc.000/ && fpc -Ur -O3 -Xs- -OWall -FWgc.tmp -XX -CX -ogc gc.pas && cd ..;'
+	bash -c 'cd fpc.000/ && fpc -Ur -O3 -Xs- -OWall -FWgc -XX -CX gc.pas && fpc -Ur -O3 -Xs- -Owall -Fwgc -XX -CX gc.pas && cd ..;' # Whole program optimization needs two compiler runs
 	${TIMECMD} ./fpc.000/gc 2> .$@.tmp
 	sleep 0.1
 	${TIMECMD} ./fpc.000/gc 2>> .$@.tmp
