@@ -18,6 +18,7 @@ python.000.time:
 	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3 }" > $@
 	rm .$@.tmp
 
+
 pypy.000.time:
 	${TIMECMD} pypy python.000/gc.py 2> .$@.tmp
 	${TIMECMD} pypy python.000/gc.py 2>> .$@.tmp
