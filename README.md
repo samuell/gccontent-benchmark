@@ -13,6 +13,11 @@ cat report.csv
 
 This is a continuation of a previous benchmarking project, covered in [this blog post](http://saml.rilspace.com/moar-languagez-gc-content-in-python-d-fpc-c-and-c).
 
+Note that we put a requirement on all codes here, to read all data line by
+line.  This is since DNA/RNA data often is too large to load into memory, and
+so we have this simple rule in order to make codes from a wide variety of
+languages to be somewhat comparable.
+
 # Acknowledgements
 
 I got tons of help with the [previous blog post](http://saml.rilspace.com/moar-languagez-gc-content-in-python-d-fpc-c-and-c),
