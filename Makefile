@@ -10,6 +10,26 @@ Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa.gz:
 
 get_data: Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa
 
+c.000.time:
+	bash -c 'cd c.000/ && gcc -oFast -ogc gc.c && cd ..;'
+	${TIMECMD} ./c.000/gc 2> .$@.tmp
+	sleep 0.1
+	${TIMECMD} ./c.000/gc 2>> .$@.tmp
+	sleep 0.1
+	${TIMECMD} ./c.000/gc 2>> .$@.tmp
+	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
+	rm .$@.tmp
+
+dlang.000.time:
+	bash -c 'cd dlang.000/ && ldc2 -O5 -boundscheck=off -release gc.d && cd ..;'
+	${TIMECMD} ./dlang.000/gc 2> .$@.tmp
+	sleep 0.1
+	${TIMECMD} ./dlang.000/gc 2>> .$@.tmp
+	sleep 0.1
+	${TIMECMD} ./dlang.000/gc 2>> .$@.tmp
+	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
+	rm .$@.tmp
+
 python.000.time:
 	${TIMECMD} python python.000/gc.py 2> .$@.tmp
 	sleep 0.1
@@ -59,21 +79,11 @@ fpc.000.time:
 	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
-dlang.000.time:
-	bash -c 'cd dlang.000/ && ldc2 -O5 -boundscheck=off -release gc.d && cd ..;'
-	${TIMECMD} ./dlang.000/gc 2> .$@.tmp
-	sleep 0.1
-	${TIMECMD} ./dlang.000/gc 2>> .$@.tmp
-	sleep 0.1
-	${TIMECMD} ./dlang.000/gc 2>> .$@.tmp
-	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
-	rm .$@.tmp
-
 report.csv: python.000.time pypy.000.time cython.000.time golang.000.time fpc.000.time dlang.000.time
 	bash -c 'for f in *time; do echo $$f","`cat $$f`; done | sort -t, -k 2,2 > $@'
 
 all: report.csv
 
 clean:
-	rm report.csv
 	rm *.time
+	rm report.csv
