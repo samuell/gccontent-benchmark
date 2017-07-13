@@ -12,50 +12,58 @@ get_data: Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa
 
 python.000.time:
 	${TIMECMD} python python.000/gc.py 2> .$@.tmp
-	sleep 1
+	sleep 0.1
 	${TIMECMD} python python.000/gc.py 2>> .$@.tmp
-	sleep 1
+	sleep 0.1
 	${TIMECMD} python python.000/gc.py 2>> .$@.tmp
-	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3 }" > $@
+	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
 
 pypy.000.time:
 	${TIMECMD} pypy python.000/gc.py 2> .$@.tmp
-	sleep 1
+	sleep 0.1
 	${TIMECMD} pypy python.000/gc.py 2>> .$@.tmp
-	sleep 1
+	sleep 0.1
 	${TIMECMD} pypy python.000/gc.py 2>> .$@.tmp
-	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3 }" > $@
+	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
 cython.000.time:
 	bash -c 'cd cython.000/ && cython --embed gc.pyx && gcc -I/usr/include/python2.7 -O3 -o gc gc.c -lpython2.7 && cd ..;'
 	${TIMECMD} ./cython.000/gc 2> .$@.tmp
-	sleep 1
+	sleep 0.1
 	${TIMECMD} ./cython.000/gc 2>> .$@.tmp
-	sleep 1
+	sleep 0.1
 	${TIMECMD} ./cython.000/gc 2>> .$@.tmp
-	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3 }" > $@
+	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
 golang.000.time:
 	bash -c 'cd golang.000/ && go build gc.go && cd ..;'
 	${TIMECMD} ./golang.000/gc 2> .$@.tmp
-	sleep 1
+	sleep 0.1
 	${TIMECMD} ./golang.000/gc 2>> .$@.tmp
-	sleep 1
+	sleep 0.1
 	${TIMECMD} ./golang.000/gc 2>> .$@.tmp
-	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3 }" > $@
+	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
-time_python: python.000.time
+fpc.000.time:
+	bash -c 'cd fpc.000/ && fpc -Ur -O3 -Xs- -OWall -FWgc.tmp -XX -CX -ogc gc.pas && cd ..;'
+	${TIMECMD} ./fpc.000/gc 2> .$@.tmp
+	sleep 0.1
+	${TIMECMD} ./fpc.000/gc 2>> .$@.tmp
+	sleep 0.1
+	${TIMECMD} ./fpc.000/gc 2>> .$@.tmp
+	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
+	rm .$@.tmp
 
-report.txt: python.000.time pypy.000.time cython.000.time golang.000.time
-	bash -c 'for f in *time; do echo $$f; cat $$f; echo; done > $@'
+report.csv: python.000.time pypy.000.time cython.000.time golang.000.time fpc.000.time
+	bash -c 'for f in *time; do echo $$f","`cat $$f`; done | sort -t, -k 2,2 > $@'
 
-all: report.txt
+all: report.csv
 
 clean:
-	rm report.txt
+	rm report.csv
 	rm *.time
