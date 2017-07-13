@@ -11,7 +11,7 @@ Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa.gz:
 get_data: Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa
 
 c.000.time:
-	bash -c 'cd c.000/ && gcc -oFast -ogc gc.c && cd ..;'
+	bash -c 'cd c.000/ && gcc -O3 -ogc gc.c && cd ..;'
 	${TIMECMD} ./c.000/gc 2> .$@.tmp
 	sleep 0.1
 	${TIMECMD} ./c.000/gc 2>> .$@.tmp
@@ -79,11 +79,12 @@ fpc.000.time:
 	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
-report.csv: python.000.time pypy.000.time cython.000.time golang.000.time fpc.000.time dlang.000.time
+report.csv: c.000.time python.000.time pypy.000.time cython.000.time golang.000.time fpc.000.time dlang.000.time
 	bash -c 'for f in *time; do echo $$f","`cat $$f`; done | sort -t, -k 2,2 > $@'
 
 all: report.csv
 
 clean:
 	rm *.time
+	rm */gc
 	rm report.csv
