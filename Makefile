@@ -41,5 +41,7 @@ cython.000.time:
 
 time_python: python.000.time
 
-print_report:
-	bash -c 'for f in *time; do echo $$f; cat $$f; echo; done'
+report.txt: python.000.time pypy.000.time cython.000.time
+	bash -c 'for f in *time; do echo $$f; cat $$f; echo; done > $@'
+
+all: report.txt

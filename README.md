@@ -1,3 +1,10 @@
-# Comparing language string processing performance with a GC Count
+# Comparing string processing performance of programming languages
 
-- More info soon ...
+... using a simple bioinformatics task: Computing the GC fraction of DNA.
+
+## Usage
+
+```
+make all
+cat report.txt
+```
