@@ -90,7 +90,7 @@ fpc.000.time:
 	rm .$@.tmp
 
 nim.000.time:
-	bash -c 'cd nim.000/ && nim c --opt:speed gc.nim  && cd ..;'
+	bash -c 'cd nim.000/ && nim c --opt:speed --checks:off gc.nim  && cd ..;'
 	${TIMECMD} ./nim.000/gc 2> .$@.tmp
 	sleep 0.1
 	${TIMECMD} ./nim.000/gc 2>> .$@.tmp
