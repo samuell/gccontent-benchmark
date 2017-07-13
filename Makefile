@@ -1,6 +1,5 @@
-# Copyright 2016 Samuel Lampa
-# samuel dot lampa at rilpartner dot com
-#
+# Copyright 2017 Samuel Lampa
+# samuel dot lampa at farmbio dot uu dot se
 TIMECMD=/usr/bin/time -f %e
 
 Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa.gz:
