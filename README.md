@@ -18,7 +18,25 @@ line.  This is since DNA/RNA data often is too large to load into memory, and
 so we have this simple rule in order to make codes from a wide variety of
 languages to be somewhat comparable.
 
-# Acknowledgements
+## Current results
+
+These are some results from running the tests in the Makefile, on my Lenovo
+ThinkPad Yoga with an Intel i5 4210U @ 1.7GHz (2.7GHz Max) and 8GB RAM, on
+Xubuntu 16.04 LTS 64bit:
+
+| Language  | Execution time (ms) |
+|-----------|---------------------|
+| C         |               0.176 |
+| Go        |               0.240 |
+| D         |               0.303 |
+| C++       |               0.380 |
+| Nim       |               0.513 |
+| FPC       |               0.517 |
+| PyPy      |               0.520 |
+| Cython    |               1.570 |
+| Python    |               2.217 |
+
+## Acknowledgements
 
 I got tons of help with the [previous blog post](http://saml.rilspace.com/moar-languagez-gc-content-in-python-d-fpc-c-and-c),
 and I'm afraid I might miss to mention some people here who have helped out,
