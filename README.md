@@ -6,7 +6,7 @@
 
 ```
 make all
-cat report.txt
+cat report.csv
 ```
 
 ## More info
