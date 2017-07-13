@@ -27,7 +27,7 @@ func main() {
 	scan := bufio.NewScanner(file)
 	for scan.Scan() {
 		line := scan.Bytes()
-		if len(line) == 0 || line[0] == '>' {
+		if line[0] == '>' {
 			continue
 		}
 		for _, c := range line {
