@@ -35,3 +35,6 @@ cython.000.time:
 	rm .$@.tmp
 
 time_python: python.000.time
+
+print_report:
+	bash -c 'for f in *time; do echo $$f; cat $$f; echo; done'
