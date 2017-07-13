@@ -11,11 +11,18 @@ Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa.gz:
 
 get_data: Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa
 
-time_python:
-	${TIMECMD} python python_v100/gc.py 2> python_time.log
-	sleep 1
-	${TIMECMD} python python_v100/gc.py 2>> python_time.log
-	sleep 1
-	${TIMECMD} python python_v100/gc.py 2>> python_time.log
-	sleep 1
-	cat python_time.log | awk "{ SUM += \$$1 } END { print SUM/3 }"
+python.000.time:
+	${TIMECMD} python python.000/gc.py 2> .$@.tmp
+	${TIMECMD} python python.000/gc.py 2>> .$@.tmp
+	${TIMECMD} python python.000/gc.py 2>> .$@.tmp
+	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3 }" > $@
+	rm .$@.tmp
+
+pypy.000.time:
+	${TIMECMD} pypy python.000/gc.py 2> .$@.tmp
+	${TIMECMD} pypy python.000/gc.py 2>> .$@.tmp
+	${TIMECMD} pypy python.000/gc.py 2>> .$@.tmp
+	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3 }" > $@
+	rm .$@.tmp
+
+time_python: python_v100.time
