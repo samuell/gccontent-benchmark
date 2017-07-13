@@ -89,7 +89,17 @@ fpc.000.time:
 	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
-report.csv: c.000.time cpp.000.time python.000.time pypy.000.time cython.000.time golang.000.time fpc.000.time dlang.000.time
+nim.000.time:
+	bash -c 'cd nim.000/ && nim c --opt:speed gc.nim  && cd ..;'
+	${TIMECMD} ./nim.000/gc 2> .$@.tmp
+	sleep 0.1
+	${TIMECMD} ./nim.000/gc 2>> .$@.tmp
+	sleep 0.1
+	${TIMECMD} ./nim.000/gc 2>> .$@.tmp
+	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
+	rm .$@.tmp
+
+report.csv: c.000.time cpp.000.time python.000.time pypy.000.time cython.000.time golang.000.time fpc.000.time dlang.000.time nim.000.time
 	bash -c 'for f in *time; do echo $$f","`cat $$f`; done | sort -t, -k 2,2 | sed "s/.time//g" > $@'
 
 all: report.csv
