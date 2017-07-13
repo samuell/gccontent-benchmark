@@ -39,9 +39,19 @@ cython.000.time:
 	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3 }" > $@
 	rm .$@.tmp
 
+golang.000.time:
+	bash -c 'cd golang.000/ && go build gc.go && cd ..;'
+	${TIMECMD} ./golang.000/gc 2> .$@.tmp
+	sleep 1
+	${TIMECMD} ./golang.000/gc 2>> .$@.tmp
+	sleep 1
+	${TIMECMD} ./golang.000/gc 2>> .$@.tmp
+	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3 }" > $@
+	rm .$@.tmp
+
 time_python: python.000.time
 
-report.txt: python.000.time pypy.000.time cython.000.time
+report.txt: python.000.time pypy.000.time cython.000.time golang.000.time
 	bash -c 'for f in *time; do echo $$f; cat $$f; echo; done > $@'
 
 all: report.txt
