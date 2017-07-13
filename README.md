@@ -20,11 +20,11 @@ languages to be somewhat comparable.
 
 ## Current results
 
-These are some results from running the tests in the Makefile, on my Lenovo
-ThinkPad Yoga with an Intel i5 4210U @ 1.7GHz (2.7GHz Max) and 8GB RAM, on
-Xubuntu 16.04 LTS 64bit:
+These are some results (Execution times in seconds, smaller is better) from
+running the tests in the Makefile, on my Lenovo ThinkPad Yoga with an Intel i5
+4210U @ 1.7GHz (2.7GHz Max) and 8GB RAM, on Xubuntu 16.04 LTS 64bit:
 
-| Language  | Execution time (ms) |
+| Language  | Execution time (s)  |
 |-----------|---------------------|
 | C         |               0.176 |
 | Go        |               0.240 |
