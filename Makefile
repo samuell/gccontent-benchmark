@@ -55,3 +55,7 @@ report.txt: python.000.time pypy.000.time cython.000.time golang.000.time
 	bash -c 'for f in *time; do echo $$f; cat $$f; echo; done > $@'
 
 all: report.txt
+
+clean:
+	rm report.txt
+	rm *.time
