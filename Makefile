@@ -51,11 +51,11 @@ python.000.time:
 
 
 pypy.000.time:
-	${TIMECMD} pypy python.000/gc.py 2> .$@.tmp
+	${TIMECMD} pypy -OO python.000/gc.py 2> .$@.tmp
 	sleep 0.1
-	${TIMECMD} pypy python.000/gc.py 2>> .$@.tmp
+	${TIMECMD} pypy -OO python.000/gc.py 2>> .$@.tmp
 	sleep 0.1
-	${TIMECMD} pypy python.000/gc.py 2>> .$@.tmp
+	${TIMECMD} pypy -OO python.000/gc.py 2>> .$@.tmp
 	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 

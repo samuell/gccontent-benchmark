@@ -47,9 +47,9 @@ running the tests in the Makefile, on my Lenovo ThinkPad Yoga with an Intel i5
 | Go        |              0.240 | go version go1.8 linux/amd64                                      |
 | D         |              0.303 | LDC - the LLVM D compiler (0.17.1) (LLVM 3.8.0)                   |
 | C++       |              0.380 | g++ (Ubuntu 5.4.0-6ubuntu1~16.04.4) 5.4.0 20160609                |
+| PyPy      |              0.437 | PyPy 5.1.2 with Gcc 5.3.1 20160413 (Python 2.7.10)                |
 | Nim       |              0.513 | Nim Compiler Version 0.12.0 (2015-11-02)                          |
 | FPC       |              0.517 | Free Pascal Compiler version 3.0.0+dfsg-2 [2016/01/28] for x86_64 |
-| PyPy      |              0.520 | PyPy 5.1.2 with Gcc 5.3.1 20160413 (Python 2.7.10)                |
 | Cython    |              1.570 | Cython version 0.23.4                                             |
 | Python    |              2.217 | Python 3.6.1                                                      |
 
