@@ -20,6 +20,7 @@ func main() {
 			counters[i] = &other
 		}
 	}
+	// Open file
 	file, err := os.Open("Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa")
 	if err != nil {
 		log.Fatal(err)
