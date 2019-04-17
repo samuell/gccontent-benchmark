@@ -1,6 +1,6 @@
 # Comparing string processing performance of programming languages
 
-... using a simple bioinformatics task: Computing the GC fraction of DNA.
+... using a simple bioinformatics task: Computing the GC fraction of DNA. It is based on the [GC content problem at Rosalind](http://rosalind.info/problems/gc/).
 
 ## Usage
 
