@@ -4,13 +4,14 @@ at = 0
 gc = 0
 
 gcfile.each_line() do |line|
-    if !line.starts_with?('>')
-        line.each_char() do |c|
-            if c == 'A' || c == 'T'
-                at += 1
-            elsif c == 'G' || c == 'C'
-                gc += 1
-            end
+    if line.starts_with?('>')
+        next
+    end
+    line.each_char() do |c|
+        if c == 'A' || c == 'T'
+            at += 1
+        elsif c == 'G' || c == 'C'
+            gc += 1
         end
     end
 end
