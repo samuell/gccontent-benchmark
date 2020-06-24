@@ -2,28 +2,27 @@ gcfile = File.new("Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa")
 
 at = 0
 gc = 0
-misc = 0
 
-cnts = Hash(Char, Pointer(Int32)).new
-
-cnts['A'] = pointerof(at)
-cnts['T'] = pointerof(at)
-cnts['G'] = pointerof(gc)
-cnts['C'] = pointerof(gc)
-cnts['N'] = pointerof(misc)
-cnts['\n'] = pointerof(misc)
+a = 65_u8
+t = 84_u8
+g = 71_u8
+c = 67_u8
 
 gcfile.each_line() do |line|
     if line.starts_with?('>')
         next
     end
-    line.each_char() do |c|
-        cnts[c].value += 1
+    line.each_byte() do |c|
+        case c
+        when a, t
+            at += 1
+            next
+        when g, c
+            gc += 1
+            next
+        end
     end
 end
-
-at = cnts['A'].value + cnts['T'].value
-gc = cnts['G'].value + cnts['C'].value
 
 gcfrac = gc / (gc + at) 
 

@@ -48,9 +48,9 @@ as operating system:
 | D         |              0.080 | The LLVM D compiler (1.22.0) (LLVM 10.0.0)                                |
 | Go        |              0.110 | Go 1.14.4 linux/amd64                                                     |
 | C++       |              0.157 | g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                   |
+| Crystal   |              0.213 | Crystal 0.35.1 [5999ae29b] (2020-06-19) LLVM: 8.0.0                       |
 | PyPy      |              0.227 | PyPy 5.10.0 with GCC 7.3.0 (Python 2.7.13)                                |
 | Nim       |              0.243 | Nim Compiler Version 0.17.2 (2018-02-05)                                  |
-| Crystal   |              0.253 | Crystal 0.35.1 [5999ae29b] (2020-06-19) LLVM: 8.0.0                       |
 | FPC       |              0.350 | Free Pascal Compiler version 3.0.4+dfsg-18ubuntu2 [2018/08/29] for x86_64 |
 | Cython    |              0.710 | Cython version 0.29.17                                                    |
 | Python    |              0.747 | Python 3.7.0                                                              |
