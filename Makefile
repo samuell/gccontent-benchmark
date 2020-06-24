@@ -131,7 +131,7 @@ report.csv: c.000.time \
 	dlang.000.time
 	# julia.000.time \
 	# pony.000.time <- Too slow to be included
-	bash -c 'for f in *time; do echo $$f"	"`cat $$f`; done | sort -t, -k 2,2 | sed "s/.time//g" > $@'
+	bash -c 'for f in *time; do echo $$f"	"`cat $$f`; done | sort -k 2,2 | sed "s/.time//g" | column -t > $@'
 
 all: report.csv
 
