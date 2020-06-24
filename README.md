@@ -38,20 +38,21 @@ tag appended to it, like: `golang.001.table-optimized`, etc).
 ## Current results
 
 These are some results (Execution times in seconds, smaller is better) from
-running the tests in the Makefile, on my Lenovo ThinkPad Yoga with an Intel i5
-4210U @ 1.7GHz (2.7GHz Max) and 8GB RAM, on Xubuntu 16.04 LTS 64bit:
+running some of the tests in the Makefile, on a Dell Inspiron laptop with an
+Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz, with Xubuntu 18.04 Bionic LTS 64bit
+as operating system:
 
-| Language  | Execution time (s) | Compiler versions                                                 |
-|-----------|--------------------|-------------------------------------------------------------------|
-| C         |              0.176 | gcc (Ubuntu 5.4.0-6ubuntu1~16.04.4) 5.4.0 20160609                |
-| Go        |              0.240 | go version go1.8 linux/amd64                                      |
-| D         |              0.303 | LDC - the LLVM D compiler (0.17.1) (LLVM 3.8.0)                   |
-| C++       |              0.380 | g++ (Ubuntu 5.4.0-6ubuntu1~16.04.4) 5.4.0 20160609                |
-| PyPy      |              0.437 | PyPy 5.1.2 with Gcc 5.3.1 20160413 (Python 2.7.10)                |
-| Nim       |              0.513 | Nim Compiler Version 0.12.0 (2015-11-02)                          |
-| FPC       |              0.517 | Free Pascal Compiler version 3.0.0+dfsg-2 [2016/01/28] for x86_64 |
-| Cython    |              1.570 | Cython version 0.23.4                                             |
-| Python    |              2.217 | Python 3.6.1                                                      |
+| Language  | Execution time (s) | Compiler versions                                                         |
+|-----------|--------------------|---------------------------------------------------------------------------|
+| C         |              0.080 | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                   |
+| D         |              0.080 | The LLVM D compiler (1.22.0) (LLVM 10.0.0)                          |
+| Go        |              0.110 | Go 1.14.4 linux/amd64                                         |
+| C++       |              0.157 | g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                   |
+| PyPy      |              0.227 | PyPy 5.10.0 with GCC 7.3.0 (Python 2.7.13)                                |
+| Nim       |              0.243 | Nim Compiler Version 0.17.2 (2018-02-05)                                  |
+| FPC       |              0.350 | Free Pascal Compiler version 3.0.4+dfsg-18ubuntu2 [2018/08/29] for x86_64 |
+| Cython    |              0.710 | Cython version 0.29.17                                                    |
+| Python    |              0.747 | Python 3.7.0                                                              |
 
 ## Acknowledgements
 
