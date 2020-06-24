@@ -4,8 +4,8 @@ import std.algorithm;
 
 void main() {
 	File file = File("Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa","r");
-    int countat[256];
-    int countgc[256];
+    int[256] countat;
+    int[256] countgc;
     countat['A'] = 1;
     countat['T'] = 1;
     countgc['G'] = 1;
@@ -14,11 +14,12 @@ void main() {
     int gc = 0;
     char[] line;
     while(file.readln(line)){
-		if (!startsWith(line, '>')) {
-            foreach (char c; line) {
-                at += countat[c];
-                gc += countgc[c];
-            }
+		if (startsWith(line, '>')) {
+            continue;
+        }
+        foreach (char c; line) {
+            at += countat[c];
+            gc += countgc[c];
         }
     }
 	float gcFraction = ( cast(float)gc / cast(float)(at+gc) );
