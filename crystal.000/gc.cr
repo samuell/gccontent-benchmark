@@ -12,8 +12,8 @@ gcfile.each_line() do |line|
   if line.starts_with?('>')
     next
   end
-  line.each_byte() do |c|
-    case c
+  line.each_byte() do |chr|
+    case chr
     when a, t
       at += 1
       next
