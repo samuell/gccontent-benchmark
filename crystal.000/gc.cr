@@ -3,10 +3,10 @@ gcfile = File.new("Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa")
 at = 0
 gc = 0
 
-a = 65_u8
-t = 84_u8
-g = 71_u8
-c = 67_u8
+a = 'A'.ord()
+t = 'T'.ord()
+g = 'G'.ord()
+c = 'C'.ord()
 
 gcfile.each_line() do |line|
   if line.starts_with?('>')
@@ -24,7 +24,7 @@ gcfile.each_line() do |line|
   end
 end
 
-gcfrac = gc / (gc + at)
+gcfile.close()
 
-puts "GC fraction: "
-puts gcfrac
+gcfrac = gc / (gc + at)
+puts "GC fraction: #{gcfrac}"
