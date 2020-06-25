@@ -9,22 +9,22 @@ g = 71_u8
 c = 67_u8
 
 gcfile.each_line() do |line|
-    if line.starts_with?('>')
-        next
+  if line.starts_with?('>')
+    next
+  end
+  line.each_byte() do |c|
+    case c
+    when a, t
+      at += 1
+      next
+    when g, c
+      gc += 1
+      next
     end
-    line.each_byte() do |c|
-        case c
-        when a, t
-            at += 1
-            next
-        when g, c
-            gc += 1
-            next
-        end
-    end
+  end
 end
 
-gcfrac = gc / (gc + at) 
+gcfrac = gc / (gc + at)
 
 puts "GC fraction: "
 puts gcfrac
