@@ -19,7 +19,7 @@ gcfile.each_line() do |line|
   end
 end
 
-gcfile.close()
+gcfile.close
 
 gcfrac = gc / (gc + at)
 puts "GC fraction: #{gcfrac}"

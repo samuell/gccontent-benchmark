@@ -10,127 +10,144 @@ Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa.gz:
 
 get_data: Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa
 
-cpp.000.time: get_data
-	bash -c 'cd cpp.000/ && g++ -O3 -ogc gc.cpp && cd ..;'
-	${TIMECMD} ./cpp.000/gc 2> .$@.tmp
+cpp/gc:
+	bash -c 'cd cpp/ && g++ -O3 -ogc gc.cpp && cd ..;'
+
+cpp.time: cpp/gc get_data
+	${TIMECMD} ./cpp/gc 2> .$@.tmp
 	sleep 0.1
-	${TIMECMD} ./cpp.000/gc 2>> .$@.tmp
+	${TIMECMD} ./cpp/gc 2>> .$@.tmp
 	sleep 0.1
-	${TIMECMD} ./cpp.000/gc 2>> .$@.tmp
+	${TIMECMD} ./cpp/gc 2>> .$@.tmp
 	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
-c.000.time: get_data
-	bash -c 'cd c.000/ && gcc -O3 -ogc gc.c && cd ..;'
-	${TIMECMD} ./c.000/gc 2> .$@.tmp
+c/gc:
+	bash -c 'cd c/ && gcc -O3 -ogc gc.c && cd ..;'
+
+c.time: c/gc get_data
+	${TIMECMD} ./c/gc 2> .$@.tmp
 	sleep 0.1
-	${TIMECMD} ./c.000/gc 2>> .$@.tmp
+	${TIMECMD} ./c/gc 2>> .$@.tmp
 	sleep 0.1
-	${TIMECMD} ./c.000/gc 2>> .$@.tmp
+	${TIMECMD} ./c/gc 2>> .$@.tmp
 	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
-dlang.000.time: get_data
-	bash -c 'cd dlang.000/ && ldc2 -O5 -boundscheck=off -release gc.d && cd ..;'
-	${TIMECMD} ./dlang.000/gc 2> .$@.tmp
+d/gc:
+	bash -c 'cd d/ && ldc2 -O5 -boundscheck=off -release gc.d && cd ..;'
+
+d.time: d/gc get_data
+	${TIMECMD} ./d/gc 2> .$@.tmp
 	sleep 0.1
-	${TIMECMD} ./dlang.000/gc 2>> .$@.tmp
+	${TIMECMD} ./d/gc 2>> .$@.tmp
 	sleep 0.1
-	${TIMECMD} ./dlang.000/gc 2>> .$@.tmp
+	${TIMECMD} ./d/gc 2>> .$@.tmp
 	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
-python.000.time: get_data
-	${TIMECMD} python python.000/gc.py 2> .$@.tmp
+python.time: get_data
+	${TIMECMD} python python/gc.py 2> .$@.tmp
 	sleep 0.1
-	${TIMECMD} python python.000/gc.py 2>> .$@.tmp
+	${TIMECMD} python python/gc.py 2>> .$@.tmp
 	sleep 0.1
-	${TIMECMD} python python.000/gc.py 2>> .$@.tmp
+	${TIMECMD} python python/gc.py 2>> .$@.tmp
 	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
-
-pypy.000.time: get_data
-	${TIMECMD} pypy -OO python.000/gc.py 2> .$@.tmp
+pypy.time: get_data
+	${TIMECMD} pypy -OO python/gc.py 2> .$@.tmp
 	sleep 0.1
-	${TIMECMD} pypy -OO python.000/gc.py 2>> .$@.tmp
+	${TIMECMD} pypy -OO python/gc.py 2>> .$@.tmp
 	sleep 0.1
-	${TIMECMD} pypy -OO python.000/gc.py 2>> .$@.tmp
+	${TIMECMD} pypy -OO python/gc.py 2>> .$@.tmp
 	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
-cython.000.time: get_data
-	bash -c 'cd cython.000/ && cython --embed gc.pyx && gcc -I/usr/include/python2.7 -O3 -o gc gc.c -lpython2.7 && cd ..;'
-	${TIMECMD} ./cython.000/gc 2> .$@.tmp
+cython/gc:
+	bash -c 'cd cython/ && cython --embed gc.pyx && gcc -I/usr/include/python2.7 -O3 -o gc gc.c -lpython2.7 && cd ..;'
+
+cython.time: cython/gc get_data
+	${TIMECMD} ./cython/gc 2> .$@.tmp
 	sleep 0.1
-	${TIMECMD} ./cython.000/gc 2>> .$@.tmp
+	${TIMECMD} ./cython/gc 2>> .$@.tmp
 	sleep 0.1
-	${TIMECMD} ./cython.000/gc 2>> .$@.tmp
+	${TIMECMD} ./cython/gc 2>> .$@.tmp
 	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
-golang.000.time: get_data
-	bash -c 'cd golang.000/ && go build gc.go && cd ..;'
-	${TIMECMD} ./golang.000/gc 2> .$@.tmp
+go/gc:
+	bash -c 'cd ./go/ && go build gc.go && cd ..;'
+
+go.time: go/gc get_data
+	${TIMECMD} ./go/gc 2> .$@.tmp
 	sleep 0.1
-	${TIMECMD} ./golang.000/gc 2>> .$@.tmp
+	${TIMECMD} ./go/gc 2>> .$@.tmp
 	sleep 0.1
-	${TIMECMD} ./golang.000/gc 2>> .$@.tmp
+	${TIMECMD} ./go/gc 2>> .$@.tmp
 	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
-fpc.000.time: get_data
-	bash -c 'cd fpc.000/ && fpc -Ur -O3 -Xs- -OWall -FWgc -XX -CX gc.pas && fpc -Ur -O3 -Xs- -Owall -Fwgc -XX -CX gc.pas && cd ..;' # Whole program optimization needs two compiler runs
-	${TIMECMD} ./fpc.000/gc 2> .$@.tmp
+fpc/gc:
+	bash -c 'cd fpc/ && fpc -Ur -O3 -Xs- -OWall -FWgc -XX -CX gc.pas && fpc -Ur -O3 -Xs- -Owall -Fwgc -XX -CX gc.pas && cd ..;' # Whole program optimization needs two compiler runs
+
+fpc.time: fpc/gc get_data
+	${TIMECMD} ./fpc/gc 2> .$@.tmp
 	sleep 0.1
-	${TIMECMD} ./fpc.000/gc 2>> .$@.tmp
+	${TIMECMD} ./fpc/gc 2>> .$@.tmp
 	sleep 0.1
-	${TIMECMD} ./fpc.000/gc 2>> .$@.tmp
+	${TIMECMD} ./fpc/gc 2>> .$@.tmp
 	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
-nim.000.time: get_data
-	bash -c 'cd nim.000/ && nim c --opt:speed --checks:off gc.nim  && cd ..;'
-	${TIMECMD} ./nim.000/gc 2> .$@.tmp
+nim/gc:
+	bash -c 'cd nim/ && nim c --opt:speed --checks:off gc.nim  && cd ..;'
+
+nim.time: get_data
+	${TIMECMD} ./nim/gc 2> .$@.tmp
 	sleep 0.1
-	${TIMECMD} ./nim.000/gc 2>> .$@.tmp
+	${TIMECMD} ./nim/gc 2>> .$@.tmp
 	sleep 0.1
-	${TIMECMD} ./nim.000/gc 2>> .$@.tmp
+	${TIMECMD} ./nim/gc 2>> .$@.tmp
 	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
-pony.000.time: get_data
-	bash -c 'cd pony.000/ && ponyc && mv pony.000 gc && cd ..;'
-	${TIMECMD} ./pony.000/gc 2> .$@.tmp
+pony/gc:
+	bash -c 'cd pony/ && ponyc && mv pony gc && cd ..;'
+
+pony.time: pony/gc get_data
+	${TIMECMD} ./pony/gc 2> .$@.tmp
 	sleep 0.1
-	${TIMECMD} ./pony.000/gc 2>> .$@.tmp
+	${TIMECMD} ./pony/gc 2>> .$@.tmp
 	sleep 0.1
-	${TIMECMD} ./pony.000/gc 2>> .$@.tmp
+	${TIMECMD} ./pony/gc 2>> .$@.tmp
 	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
-crystal.000.time: get_data
-	bash -c 'cd crystal.000/ && crystal build --release gc.cr && cd ..;'
-	${TIMECMD} ./crystal.000/gc 2> .$@.tmp
+crystal/gc:
+	bash -c 'cd crystal/ && crystal build --release gc.cr && cd ..;'
+
+crystal.time: crystal/gc get_data
+	${TIMECMD} ./crystal/gc 2> .$@.tmp
 	sleep 0.1
-	${TIMECMD} ./crystal.000/gc 2>> .$@.tmp
+	${TIMECMD} ./crystal/gc 2>> .$@.tmp
 	sleep 0.1
-	${TIMECMD} ./crystal.000/gc 2>> .$@.tmp
+	${TIMECMD} ./crystal/gc 2>> .$@.tmp
 	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
-report.csv: c.000.time \
-	cpp.000.time \
-	python.000.time \
-	pypy.000.time  \
-	python.000.time \
-	golang.000.time \
-	fpc.000.time \
-	nim.000.time \
-	crystal.000.time \
-	dlang.000.time
-	# julia.000.time \
-	# pony.000.time <- Too slow to be included
+report.csv: c.time \
+	cpp.time \
+	python.time \
+	pypy.time  \
+	python.time \
+	go.time \
+	fpc.time \
+	nim.time \
+	crystal.time \
+	d.time
+	# julia.time \
+	# pony.time <- Too slow to be included
 	bash -c 'for f in *time; do echo $$f"	"`cat $$f`; done | sort -k 2,2 | sed "s/.time//g" | column -t > $@'
 
 all: report.csv
