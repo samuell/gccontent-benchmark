@@ -1,18 +1,25 @@
-ch1 = Channel(String).new(16)
+lines_chan = Channel(String).new(16)
 
-gcfile = File.new("Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa")
-
+# ------------------------------------------------------------------------------
+# Loop over the input file in a separate fiber (and thread, if you set the
+# CRYSTAL_WORKERS count to something larger than 1), and send its output on a
+# channel
+# ------------------------------------------------------------------------------
 spawn do
+  gcfile = File.new("Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa")
   gcfile.each_line() do |line|
-    ch1.send(line)
+    lines_chan.send(line)
   end
-  ch1.close
+  lines_chan.close
+  gcfile.close
 end
 
+# ------------------------------------------------------------------------------
+# Loop over the lines on the channel in the main thread, and count GC fraction.
+# ------------------------------------------------------------------------------
 at = 0
 gc = 0
-
-while line = ch1.receive?
+while line = lines_chan.receive?
   if line.starts_with?('>')
     next
   end
@@ -28,7 +35,8 @@ while line = ch1.receive?
   end
 end
 
+# ------------------------------------------------------------------------------
+# Output results
+# ------------------------------------------------------------------------------
 gcfrac = gc / (gc + at)
 puts "GC fraction: #{gcfrac}"
-
-gcfile.close
