@@ -12,7 +12,7 @@ end
 at = 0
 gc = 0
 
-while line = ch1.receive
+while line = ch1.receive?
   if line.starts_with?('>')
     next
   end
