@@ -136,6 +136,18 @@ crystal.time: crystal/gc get_data
 	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
+crystal-csp/gc:
+	bash -c 'cd crystal-csp/ && crystal build --release -Dpreview_mt -o gc gc-csp.cr && cd ..;'
+
+crystal-csp.time: crystal-csp/gc get_data
+	${TIMECMD} ./crystal-csp/gc 2> .$@.tmp
+	sleep 0.1
+	${TIMECMD} ./crystal-csp/gc 2>> .$@.tmp
+	sleep 0.1
+	${TIMECMD} ./crystal-csp/gc 2>> .$@.tmp
+	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
+	rm .$@.tmp
+
 report.csv: c.time \
 	cpp.time \
 	python.time \
@@ -145,6 +157,7 @@ report.csv: c.time \
 	fpc.time \
 	nim.time \
 	crystal.time \
+	crystal-csp.time \
 	d.time
 	# julia.time \
 	# pony.time <- Too slow to be included
