@@ -76,6 +76,18 @@ cython.time: cython/gc get_data
 	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
+rust/gc: rust/src/main.rs
+	bash -c 'cd ./rust/ && cargo build --release && cp target/release/gc . && cd ..;'
+
+rust.time: rust/gc get_data
+	${TIMECMD} ./rust/gc 2> .$@.tmp
+	sleep 0.1
+	${TIMECMD} ./rust/gc 2>> .$@.tmp
+	sleep 0.1
+	${TIMECMD} ./rust/gc 2>> .$@.tmp
+	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
+	rm .$@.tmp
+
 go/gc:
 	bash -c 'cd ./go/ && go build gc.go && cd ..;'
 
