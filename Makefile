@@ -1,13 +1,12 @@
 # Copyright 2017 Samuel Lampa
 # samuel dot lampa at farmbio dot uu dot se
-TIMECMD=gtime -f %e
+TIMECMD=/usr/bin/time -f %e
 
 Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa.gz:
 	wget ftp://ftp.ensembl.org/pub/release-67/fasta/homo_sapiens/dna/Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa.gz
-	gunzip Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa.gz
 
-#%: %.gz
-#	zcat $< > $@
+%: %.gz
+	zcat $< > $@
 
 get_data: Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa
 
