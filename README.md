@@ -66,10 +66,15 @@ feel free to add any missing info, including yourself, here.
 
 ## Incomplete list of contributions
 
+- [Seth "ducktape programmer"](https://github.com/sstadick)
+  [contributed](https://github.com/samuell/gccontent-benchmark/pull/2) the top
+  Rust version ([rust.001](rust.001/src/main.rs)).
+- [Rob Patro](https://github.com/rob-p) contributed
+  [improvements](https://github.com/samuell/gccontent-benchmark/pull/1) to the
+  main Rust version, making it bump upward the list a few steps.
 - Daniel Spångberg (working at UPPMAX HPC center at the time) contributed
-  numerous, extremely fast implementations in C, including the one above
-  (c.000), which is constrained by the requirement to process the file line by
-  line.
+  numerous, extremely fast implementations in C, including the one above (c),
+  which is constrained by the requirement to process the file line by line.
 - [Roger Peppe](https://github.com/rogpeppe)
   ([twitter](https://twitter.com/rogpeppe)) contributed the fastest Go
   implementation, including pointers in combination with a table lookup.
