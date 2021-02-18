@@ -42,20 +42,20 @@ running some of the tests in the Makefile, on a Dell Inspiron laptop with an
 Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz, with Xubuntu 18.04 Bionic LTS 64bit
 as operating system:
 
-| Language                                               | Execution time (s) | Compiler versions                                                         |
-|--------------------------------------------------------|-------------------:|---------------------------------------------------------------------------|
-| [Rust.001](rust.001/src/main.rs) by @sstadick          |              0.067 | Rust 1.52.0-nightly (152f66092 2021-02-17)                                |
-| [C](c/gc.c)                                            |              0.080 | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                   |
-| [D](d/gc.d)                                            |              0.080 | The LLVM D compiler (1.22.0) (LLVM 10.0.0)                                |
-| [Rust](rust/src/main.rs) (with improvements by @rob-p) |              0.100 | Rust 1.52.0-nightly (152f66092 2021-02-17)                                |
-| [Go](go/gc.go)                                         |              0.110 | Go 1.14.4 linux/amd64                                                     |
-| [C++](cpp/gc.cpp)                                      |              0.157 | g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                   |
-| [Crystal](crystal/gc.cr)                               |              0.213 | Crystal 0.35.1 [5999ae29b] (2020-06-19) LLVM: 8.0.0                       |
-| [PyPy](pypy/gc.py)                                     |              0.227 | PyPy 5.10.0 with GCC 7.3.0 (Python 2.7.13)                                |
-| [Nim](nim/gc.nim)                                      |              0.243 | Nim Compiler Version 0.17.2 (2018-02-05)                                  |
-| [FPC](gc.pas)                                          |              0.350 | Free Pascal Compiler version 3.0.4+dfsg-18ubuntu2 [2018/08/29] for x86_64 |
-| [Cython](cython/gc.pyx)                                |              0.710 | Cython version 0.29.17                                                    |
-| [Python](python/gc.py)                                 |              0.747 | Python 3.7.0                                                              |
+| Language                                                                                        | Execution time (s) | Compiler versions                                                         |
+|-------------------------------------------------------------------------------------------------|-------------------:|---------------------------------------------------------------------------|
+| [Rust.001](rust.001/src/main.rs)<br>Contributed by [@sstadick](https://github.com/sstadick)     |              0.067 | Rust 1.52.0-nightly (152f66092 2021-02-17)                                |
+| [C](c/gc.c)                                                                                     |              0.080 | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                   |
+| [D](d/gc.d)                                                                                     |              0.080 | The LLVM D compiler (1.22.0) (LLVM 10.0.0)                                |
+| [Rust](rust/src/main.rs)<br>With improvements contributed by [@rob-p](https://github.com/rob-p) |              0.100 | Rust 1.52.0-nightly (152f66092 2021-02-17)                                |
+| [Go](go/gc.go)                                                                                  |              0.110 | Go 1.14.4 linux/amd64                                                     |
+| [C++](cpp/gc.cpp)                                                                               |              0.157 | g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                   |
+| [Crystal](crystal/gc.cr)                                                                        |              0.213 | Crystal 0.35.1 [5999ae29b] (2020-06-19) LLVM: 8.0.0                       |
+| [PyPy](pypy/gc.py)                                                                              |              0.227 | PyPy 5.10.0 with GCC 7.3.0 (Python 2.7.13)                                |
+| [Nim](nim/gc.nim)                                                                               |              0.243 | Nim Compiler Version 0.17.2 (2018-02-05)                                  |
+| [FPC](gc.pas)                                                                                   |              0.350 | Free Pascal Compiler version 3.0.4+dfsg-18ubuntu2 [2018/08/29] for x86_64 |
+| [Cython](cython/gc.pyx)                                                                         |              0.710 | Cython version 0.29.17                                                    |
+| [Python](python/gc.py)                                                                          |              0.747 | Python 3.7.0                                                              |
 
 ## Acknowledgements
 
