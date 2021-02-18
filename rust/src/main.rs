@@ -17,10 +17,12 @@ fn main() {
             continue;
         }
         for c in line.chars() {
-            if c == 'A' || c == 'T' {
-                at += 1;
-            } else if c == 'G' || c == 'C' {
-                gc += 1;
+            match c {
+                'G' => gc += 1,
+                'C' => gc += 1,
+                'A' => at += 1,
+                'T' => at += 1,
+                _ => (),
             }
         }
     }
