@@ -67,8 +67,8 @@ report.csv: c.time \
 	python.time \
 	rust.time \
 	rust.001.time \
-	rust.002.bitshift.time
-	# julia.time \
+	rust.002.bitshift.time \
+	julia.time
 	# pony.time <- Too slow to be included
 	bash -c 'for f in $^; do f2=$${f%.time}; echo $$f2,$$(cat $$f); done | sort -t, -k 2,2 > $@'
 
