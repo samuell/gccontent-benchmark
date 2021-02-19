@@ -44,6 +44,7 @@ as operating system:
 
 | Language                                                                                        | Execution time (s) | Compiler versions                                                         |
 |-------------------------------------------------------------------------------------------------|-------------------:|---------------------------------------------------------------------------|
+| [C++.001](cpp.001/gc.cpp)<br>Contributed by [@jmarshall](https://github.com/jmarshall)          |              0.063 | g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                   |
 | [Rust.001](rust.001/src/main.rs)<br>Contributed by [@sstadick](https://github.com/sstadick)     |              0.067 | Rust 1.52.0-nightly (152f66092 2021-02-17)                                |
 | [C](c/gc.c)                                                                                     |              0.080 | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                   |
 | [D](d/gc.d)                                                                                     |              0.080 | The LLVM D compiler (1.22.0) (LLVM 10.0.0)                                |
