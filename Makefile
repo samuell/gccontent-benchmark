@@ -44,6 +44,10 @@ rust/gc: rust/src/main.rs
 rust.001/gc: rust.001/src/main.rs
 	bash -c 'cd ./rust.001/ && cargo build --release && cp target/release/gc . && cd ..;'
 
+
+rust.002.bitshift/gc: rust.002.bitshift/src/main.rs
+	bash -c 'cd ./rust.002.bitshift/ && cargo build --release && cp target/release/gc . && cd ..;'
+
 go/gc:
 	bash -c 'cd ./go/ && go build gc.go && cd ..;'
 
@@ -87,7 +91,8 @@ report.csv: c.time \
 	pypy.time  \
 	python.time \
 	rust.time \
-	rust.001.time
+	rust.001.time \
+	rust.002.bitshift.time
 	# julia.time \
 	# pony.time <- Too slow to be included
 	bash -c 'for f in *time; do echo $$f"	"`cat $$f`; done | sort -k 2,2 | sed "s/.time//g" | column -t > $@'
