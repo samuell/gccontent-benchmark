@@ -65,7 +65,7 @@ some definition of that requirement, which is clearly very hard to define):
 
 | Language                                                                                       | Execution time (s) | Compiler versions                       |
 |------------------------------------------------------------------------------------------------|-------------------:|-----------------------------------------|
-| [C.002.rawio](c.002.rawio/gc.cpp)<br>Contributed by [@jmarshall](https://github.com/jmarshall) |              0.040 | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0 |
+| [C.002.rawio](c.002.rawio/gc.c)<br>Contributed by [@jmarshall](https://github.com/jmarshall)   |              0.040 | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0 |
 
 ## Acknowledgements
 
