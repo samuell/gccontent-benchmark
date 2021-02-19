@@ -66,6 +66,9 @@ fpc/gc:
 nim/gc:
 	bash -c 'cd nim/ && nim c --opt:speed --checks:off gc.nim  && cd ..;'
 
+perl/gc:
+	bash -c 'cd perl/ && cp gc.pl gc && cd ..;'
+
 pony/gc:
 	bash -c 'cd pony/ && ponyc && mv pony gc && cd ..;'
 
