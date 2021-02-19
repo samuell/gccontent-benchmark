@@ -58,6 +58,15 @@ as operating system:
 | [Cython](cython/gc.pyx)                                                                         |              0.710 | Cython version 0.29.17                                                    |
 | [Python](python/gc.py)                                                                          |              0.747 | Python 3.7.0                                                              |
 
+## Results with relaxed constraints on reading line-by-line
+
+The below contributed versions departs slightly from reading line-by-line (by
+some definition of that requirement, which is clearly very hard to define):
+
+| Language                                                                                       | Execution time (s) | Compiler versions                       |
+|------------------------------------------------------------------------------------------------|-------------------:|-----------------------------------------|
+| [C.002.rawio](c.002.rawio/gc.cpp)<br>Contributed by [@jmarshall](https://github.com/jmarshall) |              0.040 | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0 |
+
 ## Acknowledgements
 
 I got tons of help with the [previous blog post](http://saml.rilspace.com/moar-languagez-gc-content-in-python-d-fpc-c-and-c),
@@ -67,6 +76,10 @@ feel free to add any missing info, including yourself, here.
 
 ## Incomplete list of contributions
 
+- [John Marshall](https://github.com/jmarshall) contributed the C++.001 version
+  and the C.002.rawio version, which is very very fast, but can be argued to
+  deviate sligthly from the contraint of reading the file line-by-line, so
+  placed in a separate table above.
 - [Seth "ducktape programmer"](https://github.com/sstadick)
   [contributed](https://github.com/samuell/gccontent-benchmark/pull/2) the top
   Rust version ([rust.001](rust.001/src/main.rs)).
