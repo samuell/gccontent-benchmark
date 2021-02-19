@@ -62,6 +62,7 @@ report.csv: c.time \
 	go.time \
 	go.001.unroll.time \
 	nim.time \
+	perl.time \
 	pypy.time \
 	python.time \
 	rust.time \
@@ -142,6 +143,12 @@ julia/gc.bin: julia/gc.jl
 	nim c --opt:speed --checks:off $< \
 		&& mv $(basename $@) $@
 
+# Perl
+# We need to copy the perl script to the canonical path to simplify the e.g.
+# the cleaning rule
+perl/gc.bin: perl/gc.pl
+	cp $< $@
+
 # Python
 # We need to copy the python script to the canonical path to simplify the e.g.
 # the cleaning rule
@@ -149,7 +156,8 @@ python/gc.bin: python/gc.py
 	cp $< $@
 
 # Pypy
-# ... and the same goes for pypy:
+# We need to copy the pypy script to the canonical path to simplify the e.g.
+# the cleaning rule
 pypy/gc.bin: pypy/gc.py
 	cp $< $@
 
