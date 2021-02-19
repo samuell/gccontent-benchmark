@@ -54,6 +54,9 @@ rust.001/gc: rust.001/src/main.rs
 rust.002.bitshift/gc: rust.002.bitshift/src/main.rs
 	bash -c 'cd ./rust.002.bitshift/ && cargo build --release && cp target/release/gc . && cd ..;'
 
+rust.003.vectorized/gc: rust.003.vectorized/src/main.rs
+	bash -c 'cd ./rust.003.vectorized/ && cargo build --release && cp target/release/gc . && cd ..;'
+
 go/gc:
 	bash -c 'cd ./go/ && go build gc.go && cd ..;'
 
