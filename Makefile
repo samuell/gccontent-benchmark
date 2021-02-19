@@ -47,6 +47,9 @@ rust.001/gc: rust.001/src/main.rs
 go/gc:
 	bash -c 'cd ./go/ && go build gc.go && cd ..;'
 
+go.001.unroll/gc:
+	bash -c 'cd ./go.001.unroll/ && go build gc.go && cd ..;'
+
 fpc/gc:
 	bash -c 'cd fpc/ && fpc -Ur -O3 -Xs- -OWall -FWgc -XX -CX gc.pas && fpc -Ur -O3 -Xs- -Owall -Fwgc -XX -CX gc.pas && cd ..;' # Whole program optimization needs two compiler runs
 
@@ -82,6 +85,7 @@ report.csv: c.time \
 	d.time \
 	fpc.time \
 	go.time \
+	go.001.unroll.time \
 	nim.time \
 	python.time \
 	pypy.time  \
