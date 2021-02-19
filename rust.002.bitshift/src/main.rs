@@ -13,6 +13,8 @@ const VALUE: [u64; 256] = {
     array
 };
 
+const CHUNKSIZE: usize = 16;
+
 fn main() {
     let filename = "chry_multiplied.fa";
 
@@ -30,8 +32,15 @@ fn main() {
             line.clear();
             continue;
         }
-
-        for c in line.iter() {
+        let mut chunker = line.chunks_exact(CHUNKSIZE);
+        while let Some(chars) = chunker.next() {
+            totals += (0..CHUNKSIZE)
+                .into_iter()
+                .map(|c| chars[c])
+                .map(|b| VALUE[b as usize])
+                .sum::<u64>();
+        }
+        for c in chunker.remainder() {
             totals += VALUE[*c as usize];
         }
         line.clear();
