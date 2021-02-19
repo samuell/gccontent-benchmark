@@ -58,6 +58,18 @@ c.001.time: c.001/gc get_data
 	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
+c.002.rawio/gc: c.002.rawio/gc.c
+	gcc -O3 -Wall -o $@ c.002.rawio/gc.c
+
+c.002.rawio.time: c.002.rawio/gc get_data
+	${TIMECMD} c.002.rawio/gc 2> .$@.tmp
+	sleep 0.1
+	${TIMECMD} c.002.rawio/gc 2>> .$@.tmp
+	sleep 0.1
+	${TIMECMD} c.002.rawio/gc 2>> .$@.tmp
+	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
+	rm .$@.tmp
+
 d/gc:
 	bash -c 'cd d/ && ldc2 -O5 -boundscheck=off -release gc.d && cd ..;'
 
