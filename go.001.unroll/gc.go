@@ -11,7 +11,7 @@ func main() {
 	counters := [8][256]int64{}
 
 	// Open file
-	file, err := os.Open("Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa")
+	file, err := os.Open("chry_multiplied.fa")
 	if err != nil {
 		log.Fatal(err)
 	}
