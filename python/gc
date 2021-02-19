@@ -9,7 +9,7 @@ def main():
     g = 0
     c = 0
     for line in file:
-        if not line.startswith(">"):
+        if line[0] != '>' and (line[0] != "N" or len(line) != line.count("N") + 1):
             g += line.count("G")
             c += line.count("C")
             a += line.count("A")
