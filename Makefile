@@ -1,115 +1,160 @@
 # Copyright 2017 Samuel Lampa
 # samuel dot lampa at farmbio dot uu dot se
-REPETITIONS=10
+
+# ------------------------------------------------
+# Configuration options
+# ------------------------------------------------
+
 TESTFILE_MULTIPLICATION_FACTOR=10
-SLEEPTIME=0.5
+TEST_REPETITIONS=10
+SLEEPTIME_SECONDS=0.5
 
-TIMECMD=/usr/bin/time -f %e
-UNAME_S := $(shell uname -s)
-ifeq ($(UNAME_S),Darwin)
-	TIMECMD=gtime -f %e
-endif
+# ------------------------------------------------
+# Main rules
+# ------------------------------------------------
 
+all: report.csv
+
+clean:
+	rm -rf time.*.txt \
+		*/gc.bin \
+		*/gc \
+		*/gc.o \
+		nim/nimcache \
+		rust*/target \
+		report.csv
+
+# ------------------------------------------------
+# Get Data
+# ------------------------------------------------
+
+# Download data
 Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa.gz:
 	wget ftp://ftp.ensembl.org/pub/release-67/fasta/homo_sapiens/dna/Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa.gz
 
-
+# Un-Gzip
 %: %.gz
 	zcat $< > $@
 
-chry_multiplied.fa: Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa
+# Multiply the length of the example data file
+# by the TESTFILE_MULTIPLICATION_FACTOR setting.
+chry_multiplied.fa: Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa Makefile
 	rm -f $@;
 	for i in $(shell seq 1 ${TESTFILE_MULTIPLICATION_FACTOR}); do \
 		cat $< >> $@; \
 	done;
 
-cpp/gc:
-	bash -c 'cd cpp/ && g++ -O3 -ogc gc.cpp && cd ..;'
+# ------------------------------------------------
+# Compile
+# ------------------------------------------------
 
-cpp.001/gc: cpp.001/gc.cpp
-	g++ -O3 -Wall -o $@ cpp.001/gc.cpp
+# C++
+%.bin: %.cpp
+	g++ -O3 -o $@ $<
 
-c/gc:
-	bash -c 'cd c/ && gcc -O3 -ogc gc.c && cd ..;'
+# C
+%.bin: %.c
+	gcc -O3 -Wall -o $@ $<
 
-c.001/gc: c.001/gc.c
-	gcc -O3 -Wall -o $@ c.001/gc.c
+# Crystal
+%.bin: %.cr
+	crystal build --release -o $@ $<
 
-c.002.rawio/gc: c.002.rawio/gc.c
-	gcc -O3 -Wall -o $@ c.002.rawio/gc.c
+# Crystal with threading and CSP-style concurrency
+crystal.001.csp/gc: crystal.001.gc/gc.cr
+	crystal build --release -Dpreview_mt -o $@ $<
 
-d/gc:
-	bash -c 'cd d/ && ldc2 -O5 -boundscheck=off -release gc.d && cd ..;'
+# Cython
+cython/gc.bin: cython/gc.pyx cython/gc.c
+	cython --embed $< && gcc -I/usr/include/python2.7 -O3 -o $@ $(word 2,$^) -lpython2.7
 
-cython/gc:
-	bash -c 'cd cython/ && cython --embed gc.pyx && gcc -I/usr/include/python2.7 -O3 -o gc gc.c -lpython2.7 && cd ..;'
+# D
+%.bin: %.d
+	ldc2 -O5 -boundscheck=off -release -of=$@ $<
 
-rust/gc: rust/src/main.rs
-	bash -c 'cd ./rust/ && cargo build --release && cp target/release/gc . && cd ..;'
+# FreePascal
+%.bin: %.pas
+	# NOTE: Whole program optimization needs two compiler runs
+	fpc -Ur -O3 -Xs- -OWall -FWgc -XX -CX -o$@ $< && fpc -Ur -O3 -Xs- -Owall -Fwgc -XX -CX -o$@ $<
 
-rust.001/gc: rust.001/src/main.rs
-	bash -c 'cd ./rust.001/ && cargo build --release && cp target/release/gc . && cd ..;'
+# Go
+%.bin: %.go
+	go build -o $@ $<
 
+# Nim
+%.bin: %.nim
+	nim c --opt:speed --checks:off $<
+	mv $(basename $@) $@
 
-rust.002.bitshift/gc: rust.002.bitshift/src/main.rs
-	bash -c 'cd ./rust.002.bitshift/ && cargo build --release && cp target/release/gc . && cd ..;'
+# Python
+# We need to copy the python script to the canonical path to simplify the e.g.
+# the cleaning rule
+python/gc.bin: python/gc.py
+	cp $< $@
 
-go/gc:
-	bash -c 'cd ./go/ && go build gc.go && cd ..;'
+# Pypy
+# ... and the same goes for pypy:
+pypy/gc.bin: pypy/gc.py
+	cp $< $@
 
-go.001.unroll/gc:
-	bash -c 'cd ./go.001.unroll/ && go build gc.go && cd ..;'
+# Rust
+rust/gc.bin: rust/src/main.rs rust/Cargo.toml
+	cargo build --release --manifest-path $(word 2,$^) -Z unstable-options --out-dir $(shell dirname $@)
+	mv $(basename $@) $@
 
-fpc/gc:
-	bash -c 'cd fpc/ && fpc -Ur -O3 -Xs- -OWall -FWgc -XX -CX gc.pas && fpc -Ur -O3 -Xs- -Owall -Fwgc -XX -CX gc.pas && cd ..;' # Whole program optimization needs two compiler runs
+rust%/gc.bin: rust%/src/main.rs rust%/Cargo.toml
+	cargo build --release --manifest-path $(word 2,$^) -Z unstable-options --out-dir $(shell dirname $@)
+	mv $(basename $@) $@
 
-nim/gc:
-	bash -c 'cd nim/ && nim c --opt:speed --checks:off gc.nim  && cd ..;'
+#TODO: Update
+#pony/gc: pony/gc.pony
+#	ponyc
 
-pony/gc:
-	bash -c 'cd pony/ && ponyc && mv pony gc && cd ..;'
+# ------------------------------------------------
+# Time program execution
+# ------------------------------------------------
 
-crystal/gc:
-	bash -c 'cd crystal/ && crystal build --release gc.cr && cd ..;'
+# Set up time command
+TIMECMD=/usr/bin/time -f %e # Use a different time command on MacOS
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+	TIMECMD=gtime -f %e
+endif
 
-crystal.001.csp/gc:
-	bash -c 'cd crystal.001.csp/ && crystal build --release -Dpreview_mt -o gc gc.cr && cd ..;'
-
-%.time: %/gc chry_multiplied.fa
-	rm -f .$@.tmp
-	for i in $(shell seq ${REPETITIONS}); do \
+#  Do the timing of program runs
+time.%.txt: %/gc.bin chry_multiplied.fa
+	rm -f $@.tmp
+	for i in $(shell seq ${TEST_REPETITIONS}); do \
 		echo "Test #$$i ..."; \
-		${TIMECMD} $< 2>> .$@.tmp; \
-		sleep ${SLEEPTIME}; \
+		${TIMECMD} $< 2>> $@.tmp; \
+		sleep ${SLEEPTIME_SECONDS}; \
 	done
-	cat .$@.tmp | awk "{ SUM += \$$1; LC += 1 } END { print SUM/LC }" > $@
-	rm .$@.tmp
+	cat $@.tmp | awk "{ SUM += \$$1; LC += 1 } END { print SUM/LC }" > $@
+	rm $@.tmp
 
-report.csv: c.time \
-	c.001.time \
-	cpp.time \
-	cpp.001.time \
-	crystal.time \
-	crystal-csp.time \
-	cython.time \
-	d.time \
-	fpc.time \
-	go.time \
-	go.001.unroll.time \
-	nim.time \
-	python.time \
-	pypy.time  \
-	python.time \
-	rust.time \
-	rust.001.time \
-	rust.002.bitshift.time
-	# julia.time \
-	# pony.time <- Too slow to be included
-	bash -c 'for f in *time; do echo $$f"	"`cat $$f`; done | sort -k 2,2 | sed "s/.time//g" | column -t > $@'
+# ------------------------------------------------
+# Create the final report
+# ------------------------------------------------
 
-all: report.csv
+report.csv: time.c.txt \
+	time.c.001.txt \
+	time.cpp.txt \
+	time.cpp.001.txt \
+	time.crystal.txt \
+	time.crystal.001.csp.txt \
+	time.cython.txt \
+	time.d.txt \
+	time.fpc.txt \
+	time.go.txt \
+	time.go.001.unroll.txt \
+	time.nim.txt \
+	time.python.txt \
+	time.pypy.txt \
+	time.python.txt \
+	time.rust.txt \
+	time.rust.001.txt \
+	time.rust.002.bitshift.txt
+	# julia/time.txt \
+	# pony/time.txt <- Too slow to be included
+	bash -c 'for f in $^; do f2=$${f#time.}; f2=$${f2%.txt}; echo $$f2,$$(cat $$f); done | sort -t, -k 2,2 > $@'
 
-clean:
-	rm *.time
-	rm */gc
-	rm report.csv
