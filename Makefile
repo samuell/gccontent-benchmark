@@ -1,12 +1,18 @@
 # Copyright 2017 Samuel Lampa
 # samuel dot lampa at farmbio dot uu dot se
-TIMECMD=/usr/bin/time -f %e
 REPETITIONS=10
 TESTFILE_MULTIPLICATION_FACTOR=10
 SLEEPTIME=0.5
 
+TIMECMD=/usr/bin/time -f %e
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+	TIMECMD=gtime -f %e
+endif
+
 Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa.gz:
 	wget ftp://ftp.ensembl.org/pub/release-67/fasta/homo_sapiens/dna/Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa.gz
+
 
 %: %.gz
 	zcat $< > $@
