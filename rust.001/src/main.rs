@@ -14,7 +14,7 @@ const GC: [u8; 256] = {
     array
 };
 fn main() {
-    let filename = "Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa";
+    let filename = "chry_multiplied.fa";
 
     let file = File::open(filename).unwrap();
     let mut reader = BufReader::new(file);

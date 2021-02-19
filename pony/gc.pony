@@ -11,7 +11,7 @@ actor Main
     var frac: F32 = 0
     try
       with file = OpenFile(
-        FilePath(env.root as AmbientAuth, "Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa", caps)) as File
+        FilePath(env.root as AmbientAuth, "chry_multiplied.fa", caps)) as File
       do
         env.out.print(file.path.path)
         for line in file.lines() do

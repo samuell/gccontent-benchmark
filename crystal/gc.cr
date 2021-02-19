@@ -1,4 +1,4 @@
-gcfile = File.new("Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa")
+gcfile = File.new("chry_multiplied.fa")
 
 at = 0
 gc = 0

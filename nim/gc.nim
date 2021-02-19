@@ -30,4 +30,4 @@ proc process(filename: string) =
 
 
 when isMainModule:
-  process("Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa")
+  process("chry_multiplied.fa")

@@ -18,7 +18,7 @@ begin
     GCCount := 0;
     TotalBaseCount := 0;
  
-    Assign(FastaFile, 'Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa'); 
+    Assign(FastaFile, 'chry_multiplied.fa'); 
     Reset(FastaFile);
     while not EOF(FastaFile) do begin
         Readln(FastaFile, CurrentLine); 
