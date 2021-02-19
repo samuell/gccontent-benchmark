@@ -22,6 +22,18 @@ cpp.time: cpp/gc get_data
 	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
+cpp.001/gc: cpp.001/gc.cpp
+	g++ -O3 -Wall -o $@ cpp.001/gc.cpp
+
+cpp.001.time: cpp.001/gc get_data
+	${TIMECMD} cpp.001/gc 2> .$@.tmp
+	sleep 0.1
+	${TIMECMD} cpp.001/gc 2>> .$@.tmp
+	sleep 0.1
+	${TIMECMD} cpp.001/gc 2>> .$@.tmp
+	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
+	rm .$@.tmp
+
 c/gc:
 	bash -c 'cd c/ && gcc -O3 -ogc gc.c && cd ..;'
 
@@ -31,6 +43,18 @@ c.time: c/gc get_data
 	${TIMECMD} ./c/gc 2>> .$@.tmp
 	sleep 0.1
 	${TIMECMD} ./c/gc 2>> .$@.tmp
+	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
+	rm .$@.tmp
+
+c.001/gc: c.001/gc.c
+	gcc -O3 -Wall -o $@ c.001/gc.c
+
+c.001.time: c.001/gc get_data
+	${TIMECMD} c.001/gc 2> .$@.tmp
+	sleep 0.1
+	${TIMECMD} c.001/gc 2>> .$@.tmp
+	sleep 0.1
+	${TIMECMD} c.001/gc 2>> .$@.tmp
 	cat .$@.tmp | awk "{ SUM += \$$1 } END { print SUM/3.0 }" > $@
 	rm .$@.tmp
 
