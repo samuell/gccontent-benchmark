@@ -5,13 +5,11 @@ use warnings;
 open(my $fh, '<', "chry_multiplied.fa") or die $!;
 my $gc = 0;
 my $at = 0;
-while (my $line = <$fh>) {
-    if ($line  =~ /^>/) {
-        next;
-    }
+while (<$fh>) {
+    next if ($_ =~ /^>/);
 
-    $gc += ($line =~ tr/GC//);
-    $at += ($line =~ tr/AT//);
+    $gc += ($_ =~ tr/GC//);
+    $at += ($_ =~ tr/AT//);
 }
 
 my $gc_ration = $gc / ($gc + $at);
