@@ -1,5 +1,8 @@
+#![feature(core_intrinsics)]
 use std::fs::File;
 use std::io::{BufRead, BufReader};
+
+use std::intrinsics::unlikely;
 
 const VALUE: [u64; 256] = {
     let mut array = [0u64; 256];
@@ -19,12 +22,11 @@ fn main() {
     let mut totals = 0u64;
     let mut line = Vec::with_capacity(100);
     loop {
-        match reader.read_until(b'\n', &mut line) {
-            Ok(0) => break,
-            Ok(_) => (),
-            Err(e) => panic!("{:?}", e),
+        if unlikely(reader.read_until(b'\n', &mut line).expect("error reading") == 0) {
+            break;
         }
-        if line[0] == b'>' {
+
+        if unlikely(line[0] == b'>') {
             line.clear();
             continue;
         }
