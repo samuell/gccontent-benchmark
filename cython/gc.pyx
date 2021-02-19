@@ -2,7 +2,7 @@ import re
 import string
  
 def main():
-    file = open("Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa","r")
+    file = open("chry_multiplied.fa","r")
     cdef int a, t, c, g
     a = 0
     t = 0

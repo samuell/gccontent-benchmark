@@ -3,7 +3,7 @@ import std.string;
 import std.algorithm;
 
 void main() {
-	File file = File("Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa","r");
+	File file = File("chry_multiplied.fa","r");
     int[256] countat;
     int[256] countgc;
     countat['A'] = 1;

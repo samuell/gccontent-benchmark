@@ -3,7 +3,7 @@ use std::io::{BufReader};
 use bstr::io::BufReadExt;
 
 fn main() {
-    let filename = "Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa";
+    let filename = "chry_multiplied.fa";
     
     let mut cc: [u32; 256] = [0; 256];
     // Open the file in read-only mode (ignoring errors).

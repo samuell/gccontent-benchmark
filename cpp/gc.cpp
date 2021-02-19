@@ -4,7 +4,7 @@
 
 int main() {
 
-    std::fstream fs("Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa", std::ios::in);
+    std::fstream fs("chry_multiplied.fa", std::ios::in);
 
     int a = 0;
     int t = 0;

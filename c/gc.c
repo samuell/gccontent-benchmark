@@ -7,7 +7,7 @@ int main()
   int total=0;
   char tablegc[256]={0,};
   char tabletotal[256]={0,};
-  FILE *f=fopen("Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa","r");
+  FILE *f=fopen("chry_multiplied.fa","r");
   tabletotal['A']=1;
   tabletotal['T']=1;
   tabletotal['C']=1;

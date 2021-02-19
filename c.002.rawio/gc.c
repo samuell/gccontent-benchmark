@@ -15,7 +15,7 @@ int main(int argc, char **argv)
     unsigned char *buffer = malloc(buflen + 1);
     if (buffer == NULL) { perror("Can't allocate buffer"); return 1; }
 
-    int fd = open("Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa", O_RDONLY);
+    int fd = open("chry_multiplied.fa", O_RDONLY);
     if (fd < 0) { perror("Can't open input file"); return 1; }
 
     value['A'] = value['T'] = 1;

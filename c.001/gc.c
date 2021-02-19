@@ -5,7 +5,7 @@ uint64_t value[256] = { 0 };
 
 int main()
 {
-    FILE *f = fopen("Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa", "r");
+    FILE *f = fopen("chry_multiplied.fa", "r");
     if (f == NULL) { perror("Can't open input file"); return 1; }
 
     value['A'] = value['T'] = 1;

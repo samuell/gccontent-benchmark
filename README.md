@@ -42,21 +42,25 @@ running some of the tests in the Makefile, on a Dell Inspiron laptop with an
 Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz, with Xubuntu 18.04 Bionic LTS 64bit
 as operating system:
 
-| Language                                                                                        | Execution time (s) | Compiler versions                                                         |
-|-------------------------------------------------------------------------------------------------|-------------------:|---------------------------------------------------------------------------|
-| [C++.001](cpp.001/gc.cpp)<br>Contributed by [@jmarshall](https://github.com/jmarshall)          |              0.063 | g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                   |
-| [Rust.001](rust.001/src/main.rs)<br>Contributed by [@sstadick](https://github.com/sstadick)     |              0.067 | Rust 1.52.0-nightly (152f66092 2021-02-17)                                |
-| [C](c/gc.c)                                                                                     |              0.080 | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                   |
-| [D](d/gc.d)                                                                                     |              0.080 | The LLVM D compiler (1.22.0) (LLVM 10.0.0)                                |
-| [Rust](rust/src/main.rs)<br>With improvements contributed by [@rob-p](https://github.com/rob-p) |              0.100 | Rust 1.52.0-nightly (152f66092 2021-02-17)                                |
-| [Go](go/gc.go)                                                                                  |              0.110 | Go 1.14.4 linux/amd64                                                     |
-| [C++](cpp/gc.cpp)                                                                               |              0.157 | g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                   |
-| [Crystal](crystal/gc.cr)                                                                        |              0.213 | Crystal 0.35.1 [5999ae29b] (2020-06-19) LLVM: 8.0.0                       |
-| [PyPy](pypy/gc.py)                                                                              |              0.227 | PyPy 5.10.0 with GCC 7.3.0 (Python 2.7.13)                                |
-| [Nim](nim/gc.nim)                                                                               |              0.243 | Nim Compiler Version 0.17.2 (2018-02-05)                                  |
-| [FPC](gc.pas)                                                                                   |              0.350 | Free Pascal Compiler version 3.0.4+dfsg-18ubuntu2 [2018/08/29] for x86_64 |
-| [Cython](cython/gc.pyx)                                                                         |              0.710 | Cython version 0.29.17                                                    |
-| [Python](python/gc.py)                                                                          |              0.747 | Python 3.7.0                                                              |
+| Language                                                                                             | Execution time (s) | Compiler versions                                                         |
+|------------------------------------------------------------------------------------------------------|-------------------:|---------------------------------------------------------------------------|
+| [Rust.002](rust.002.bitshift/src/main.rs)<br>Contributed by [@sstadick](https://github.com/sstadick) |              0.436 | Rust 1.52.0-nightly (152f66092 2021-02-17)                                |
+| [Rust.001](rust.001/src/main.rs)<br>Contributed by [@sstadick](https://github.com/sstadick)          |              0.514 | Rust 1.52.0-nightly (152f66092 2021-02-17)                                |
+| [C.001](c.001/gc.c)<br>Contributed by [@jmarshall](https://github.com/jmarshall)                     |              0.515 | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                   |
+| [C++.001](cpp.001/gc.cpp)<br>Contributed by [@jmarshall](https://github.com/jmarshall)               |              0.537 | g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                   |
+| [C](c/gc.c)                                                                                          |              0.614 | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                   |
+| [D](d/gc.d)                                                                                          |              0.660 | The LLVM D compiler (1.22.0) (LLVM 10.0.0)                                |
+| [Go.001.unroll](go.001.unroll/gc.go)<br>Contributed by [@egonelbre](https://github.com/egonelbre)    |              0.831 | Go 1.15 linux/amd64                                                       |
+| [Rust](rust/src/main.rs)<br>With improvements contributed by [@rob-p](https://github.com/rob-p)      |              0.873 | Rust 1.52.0-nightly (152f66092 2021-02-17)                                |
+| [Go](go/gc.go)                                                                                       |              0.970 | Go 1.15 linux/amd64                                                       |
+| [C++](cpp/gc.cpp)                                                                                    |              1.401 | g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                   |
+| [PyPy](pypy/gc.py)                                                                                   |              1.886 | PyPy 5.10.0 with GCC 7.3.0 (Python 2.7.13)                                |
+| [Crystal](crystal/gc.cr)                                                                             |              2.201 | Crystal 0.35.1 [5999ae29b] (2020-06-19) LLVM: 8.0.0                       |
+| [Nim](nim/gc.nim)                                                                                    |              2.230 | Nim Compiler Version 0.17.2 (2018-02-05)                                  |
+| [FPC](gc.pas)                                                                                        |              3.230 | Free Pascal Compiler version 3.0.4+dfsg-18ubuntu2 [2018/08/29] for x86_64 |
+| [Crystal-CSP](crystal-csp/gc.cr)                                                                     |              3.837 | Crystal 0.35.1 [5999ae29b] (2020-06-19) LLVM: 8.0.0                       |
+| [Cython](cython/gc.pyx)                                                                         |              5.417 | Cython version 0.26.1
+| [Python](python/gc.py)                                                                          |              7.150 | Python 3.7.0                                                              |
 
 ## Results with relaxed constraints on reading line-by-line
 
@@ -67,25 +71,12 @@ some definition of that requirement, which is clearly very hard to define):
 |------------------------------------------------------------------------------------------------|-------------------:|-----------------------------------------|
 | [C.002.rawio](c.002.rawio/gc.c)<br>Contributed by [@jmarshall](https://github.com/jmarshall)   |              0.040 | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0 |
 
-## Acknowledgements
+## Incomplete list of contributions before merge to GitHub
 
-I got tons of help with the [previous blog post](http://saml.rilspace.com/moar-languagez-gc-content-in-python-d-fpc-c-and-c),
-and I'm afraid I might miss to mention some people here who have helped out,
-but see the below list as an (incomplete) start at collecting contributors, and
-feel free to add any missing info, including yourself, here.
+For contributors after establishing the GitHub repo, see [here](https://github.com/samuell/gccontent-benchmark/graphs/contributors).
+Below is an incomplete list of people who contributed to the code examples
+while the benchmark was [hosted on my old blog](https://github.com/samuell/gccontent-benchmark/graphs/contributors):
 
-## Incomplete list of contributions
-
-- [John Marshall](https://github.com/jmarshall) contributed the C++.001 version
-  and the C.002.rawio version, which is very very fast, but can be argued to
-  deviate sligthly from the contraint of reading the file line-by-line, so
-  placed in a separate table above.
-- [Seth "ducktape programmer"](https://github.com/sstadick)
-  [contributed](https://github.com/samuell/gccontent-benchmark/pull/2) the top
-  Rust version ([rust.001](rust.001/src/main.rs)).
-- [Rob Patro](https://github.com/rob-p) contributed
-  [improvements](https://github.com/samuell/gccontent-benchmark/pull/1) to the
-  main Rust version, making it bump upward the list a few steps.
 - Daniel Spångberg (working at UPPMAX HPC center at the time) contributed
   numerous, extremely fast implementations in C, including the one above (c),
   which is constrained by the requirement to process the file line by line.
