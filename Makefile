@@ -28,6 +28,7 @@ clean:
 		*/gc \
 		*/gc.o \
 		cython/gc.c \
+		java/gc.class \
 		nim/nimcache \
 		rust*/target \
 		report.*
@@ -181,8 +182,9 @@ cython/gc.bin: cython/gc.pyx
 	go build -o $@ $<
 
 # Java
-java/gc.bin: java/gc.java
-	javac $<:
+java/gc.class: java/gc.java
+	javac $<;
+java/gc.bin: java/gc.class
 	cp java/gc.sh $@;
 
 # Julia

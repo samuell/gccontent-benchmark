@@ -70,7 +70,7 @@ as operating system.
 | [crystal](crystal/gc.cr)                               | 4.48               | Crystal 0.35.1 [5999ae29b] (2020-06-19)  LLVM: 8.0.0                                    |
 | [nim](nim/gc.nim)                                      | 4.498              | Nim Compiler Version 0.17.2 (2018-02-05) [Linux: amd64]                                 |
 | [cython](cython/gc.pyx)                                | 6.03               | Cython version 0.26.1                                                                   |
-| [java](java/gc.java)                                   | 6.234              | openjdk version "1.8.0_282"                                                             |
+| [java](java/gc.java)                                   | 6.187              | java version "15.0.2" 2021-01-19                                                        |
 | [fpc](fpc/gc.pas)                                      | 6.578              | Free Pascal Compiler version 3.0.4+dfsg-18ubuntu2 [2018/08/29] for x86_64               |
 | [perl](perl/gc.pl)                                     | 7.323              | Perl 5, version 26, subversion 1 (v5.26.1) built for x86_64-linux-gnu-thread-multi      |
 | [python](python/gc.py)                                 | 8.847              | Python 3.7.0                                                                            |
