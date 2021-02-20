@@ -64,6 +64,7 @@ as operating system.
 | [rust](rust/src/main.rs)                               | 1.722              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                                                           |
 | [julia](julia/gc.jl)                                   | 1.926              | julia version 1.5.3                                                                                                   |
 | [go](go/gc.go)                                         | 1.937              | go version go1.15 linux/amd64                                                                                         |
+| [c.003.ril](c.003.ril/gc.c)                            | 1.955              | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                                               |
 | [pypy](pypy/gc.py)                                     | 2.679              | Python 2.7.13 (5.10.0+dfsg-3build2, Feb 06 2018, 18:37:50) [PyPy 5.10.0 with GCC 7.3.0]                               |
 | [cpp](cpp/gc.cpp)                                      | 2.832              | g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                                               |
 | [crystal.001.csp](crystal.001.csp/gc.cr)               | 4.198              | Crystal 0.35.1 [5999ae29b] (2020-06-19)  LLVM: 8.0.0                                                                  |

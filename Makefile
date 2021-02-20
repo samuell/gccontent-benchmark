@@ -64,6 +64,7 @@ report.html: report.md
 
 report.md: c.time c.version \
 	c.001.time c.version \
+	c.003.ril.time c.version \
 	cpp.time cpp.version \
 	cpp.001.time cpp.version \
 	crystal.time crystal.version \
@@ -154,7 +155,7 @@ chry_multiplied.fa: Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa
 
 # C
 %.bin: %.c
-	gcc -O3 -Wall -o $@ $<
+	gcc -O3 -o $@ $<
 
 # C++
 %.bin: %.cpp
