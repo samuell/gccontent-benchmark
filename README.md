@@ -61,8 +61,8 @@ as operating system:
 | [Nim](nim/gc.nim)                                                                                             |              2.230 | Nim Compiler Version 0.17.2 (2018-02-05)                                  |
 | [FPC](gc.pas)                                                                                                 |              3.230 | Free Pascal Compiler version 3.0.4+dfsg-18ubuntu2 [2018/08/29] for x86_64 |
 | [Crystal-CSP](crystal-csp/gc.cr)                                                                              |              3.837 | Crystal 0.35.1 [5999ae29b] (2020-06-19) LLVM: 8.0.0                       |
-| [Cython](cython/gc.pyx)                                                                         |              5.417 | Cython version 0.26.1
-| [Python](python/gc.py)                                                                          |              7.150 | Python 3.7.0                                                              |
+| [Cython](cython/gc.pyx)                                                                                       |              5.417 | Cython version 0.26.1                                                     |
+| [Python](python/gc.py)                                                                                        |              7.150 | Python 3.7.0                                                              |
 
 ## Results with relaxed constraints on reading line-by-line
 

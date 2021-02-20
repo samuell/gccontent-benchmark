@@ -7,7 +7,7 @@
 
 TESTFILE_MULTIPLICATION_FACTOR=10
 TEST_REPETITIONS=10
-SLEEPTIME_SECONDS=0.5
+SLEEPTIME_SECONDS=1
 
 CRYSTAL_WORKERS=2
 
@@ -15,16 +15,21 @@ CRYSTAL_WORKERS=2
 # Main rules
 # ------------------------------------------------
 
-all: report.csv
+.DEFAULT_GOAL := all
+
+all: report.md
+
+html-report: report.html
 
 clean:
 	rm -rf *.time \
+		*.version \
 		*/gc.bin \
 		*/gc \
 		*/gc.o \
 		nim/nimcache \
 		rust*/target \
-		report.csv
+		report.*
 
 # ------------------------------------------------
 # Time program execution
@@ -52,28 +57,65 @@ endif
 # Create the final report
 # ------------------------------------------------
 
-report.csv: c.time \
-	c.001.time \
-	cpp.time \
-	cpp.001.time \
-	crystal.time \
-	crystal.001.csp.time \
-	cython.time \
-	d.time \
-	fpc.time \
-	go.time \
-	go.001.unroll.time \
-	nim.time \
-	perl.time \
-	pypy.time \
-	python.time \
-	rust.time \
-	rust.001.time \
-	rust.002.bitshift.time \
-	rust.003.vectorized.time \
-	julia.time
-	# pony.time <- Too slow to be included
-	bash -c 'for f in $^; do f2=$${f%.time}; echo $$f2,$$(cat $$f); done | sort -t, -k 2,2 > $@'
+report.html: report.md
+	pandoc -i $< -o $@
+
+report.md: c.time c.version \
+	c.001.time c.version \
+	cpp.time cpp.version \
+	cpp.001.time cpp.version \
+	crystal.time crystal.version \
+	crystal.001.csp.time crystal.version \
+	cython.time cython.version \
+	d.time d.version \
+	fpc.time fpc.version \
+	go.time go.version \
+	go.001.unroll.time go.version \
+	nim.time nim.version \
+	perl.time perl.version \
+	pypy.time pypy.version \
+	python.time python.version \
+	rust.time rust.version \
+	rust.001.time rust.version \
+	rust.002.bitshift.time rust.version \
+	rust.003.vectorized.time rust.version \
+	julia.time julia.version
+	#pony.time pony.version
+	echo "| Language | Time (s) | Compiler or interpreter version |" > $@
+	echo "|----------|----------|---------------------------------|" >> $@
+	bash -c 'for f in *.time; do f2=$${f%.time}; echo "| [$$f2]($$f2) | $$(cat $$f) | $$(cat $$(echo $$f2 | grep -oP "^[a-z0-9]+").version) |"; done | sort -n -t"|" -k 3,3 >> $@'
+
+# ------------------------------------------------
+# Write version information for each language
+# ------------------------------------------------
+c.version:
+	gcc --version | head -n 1 > $@
+cpp.version:
+	g++ --version | head -n 1 > $@
+crystal.version:
+	crystal version | tr "\n" " " | cut -d" " -f 1-7 > $@
+cython.version:
+	cython --version 2> $@
+d.version:
+	ldc2 --version | head -n 2 | tr "\n" " " | cut -d" " -f 1-7,10-13 > $@
+fpc.version:
+	fpc -version |& head -n 1 | cut -d" " -f 2-9 > $@
+go.version:
+	go version > $@
+nim.version:
+	nim --version |& head -n 1 > $@
+perl.version:
+	perl --version | head -n 2 | tail -n 1 > $@
+pony.version:
+	ponyc --version > $@
+pypy.version:
+	pypy --version |& tr "\n" " " > $@
+python.version:
+	python --version > $@
+rust.version:
+	rustc --version > $@
+julia.version:
+	julia --version > $@
 
 # ------------------------------------------------
 # Get Data
@@ -89,7 +131,7 @@ Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa.gz:
 
 # Multiply the length of the example data file
 # by the TESTFILE_MULTIPLICATION_FACTOR setting.
-chry_multiplied.fa: Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa Makefile
+chry_multiplied.fa: Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa
 	rm -f $@;
 	for i in $(shell seq 1 ${TESTFILE_MULTIPLICATION_FACTOR}); do \
 		cat $< >> $@; \
@@ -99,13 +141,13 @@ chry_multiplied.fa: Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa Makefile
 # Compile
 # ------------------------------------------------
 
-# C++
-%.bin: %.cpp
-	g++ -O3 -o $@ $<
-
 # C
 %.bin: %.c
 	gcc -O3 -Wall -o $@ $<
+
+# C++
+%.bin: %.cpp
+	g++ -O3 -o $@ $<
 
 # Crystal
 %.bin: %.cr
