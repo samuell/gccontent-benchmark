@@ -37,6 +37,8 @@ tag appended to it, like: `golang.001.table-optimized`, etc).
 
 ## Current results
 
+**WARNING: Current results (as of Feb 20, 2021) outdated. Udpated results coming later today**
+
 These are some results (Execution times in seconds, smaller is better) from
 running some of the tests in the Makefile, on a Dell Inspiron laptop with an
 Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz, with Xubuntu 18.04 Bionic LTS 64bit
