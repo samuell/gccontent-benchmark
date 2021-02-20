@@ -117,6 +117,8 @@ rust.version:
 	rustc --version > $@
 julia.version:
 	julia --version > $@
+java.version:
+	java -version 2>&1 | head -n 1 > $@
 
 # ------------------------------------------------
 # Get Data
@@ -214,6 +216,10 @@ rust/gc.bin: rust/src/main.rs rust/Cargo.toml
 rust%/gc.bin: rust%/src/main.rs rust%/Cargo.toml
 	cargo build --release --manifest-path $(word 2,$^) -Z unstable-options --out-dir $(shell dirname $@) \
 		&& mv $(basename $@) $@
+
+# Java
+java/gc.bin: java/gc.java
+	javac $<
 
 #TODO: Update
 #pony/gc: pony/gc.pony
