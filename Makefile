@@ -27,6 +27,7 @@ clean:
 		*/gc.bin \
 		*/gc \
 		*/gc.o \
+		cython/gc.c \
 		nim/nimcache \
 		rust*/target \
 		report.*
