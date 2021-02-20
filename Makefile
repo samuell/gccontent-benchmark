@@ -25,92 +25,6 @@ clean:
 		report.csv
 
 # ------------------------------------------------
-# Get Data
-# ------------------------------------------------
-
-# Download data
-Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa.gz:
-	wget ftp://ftp.ensembl.org/pub/release-67/fasta/homo_sapiens/dna/Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa.gz
-
-# Un-Gzip
-%: %.gz
-	zcat $< > $@
-
-# Multiply the length of the example data file
-# by the TESTFILE_MULTIPLICATION_FACTOR setting.
-chry_multiplied.fa: Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa Makefile
-	rm -f $@;
-	for i in $(shell seq 1 ${TESTFILE_MULTIPLICATION_FACTOR}); do \
-		cat $< >> $@; \
-	done;
-
-# ------------------------------------------------
-# Compile
-# ------------------------------------------------
-
-# C++
-%.bin: %.cpp
-	g++ -O3 -o $@ $<
-
-# C
-%.bin: %.c
-	gcc -O3 -Wall -o $@ $<
-
-# Crystal
-%.bin: %.cr
-	crystal build --release -o $@ $<
-
-# Crystal with threading and CSP-style concurrency
-crystal.001.csp/gc: crystal.001.gc/gc.cr
-	crystal build --release -Dpreview_mt -o $@ $<
-
-# Cython
-cython/gc.bin: cython/gc.pyx cython/gc.c
-	cython --embed $< && gcc -I/usr/include/python2.7 -O3 -o $@ $(word 2,$^) -lpython2.7
-
-# D
-%.bin: %.d
-	ldc2 -O5 -boundscheck=off -release -of=$@ $<
-
-# FreePascal
-%.bin: %.pas
-	# NOTE: Whole program optimization needs two compiler runs
-	fpc -Ur -O3 -Xs- -OWall -FWgc -XX -CX -o$@ $< && fpc -Ur -O3 -Xs- -Owall -Fwgc -XX -CX -o$@ $<
-
-# Go
-%.bin: %.go
-	go build -o $@ $<
-
-# Nim
-%.bin: %.nim
-	nim c --opt:speed --checks:off $<
-	mv $(basename $@) $@
-
-# Python
-# We need to copy the python script to the canonical path to simplify the e.g.
-# the cleaning rule
-python/gc.bin: python/gc.py
-	cp $< $@
-
-# Pypy
-# ... and the same goes for pypy:
-pypy/gc.bin: pypy/gc.py
-	cp $< $@
-
-# Rust
-rust/gc.bin: rust/src/main.rs rust/Cargo.toml
-	cargo build --release --manifest-path $(word 2,$^) -Z unstable-options --out-dir $(shell dirname $@)
-	mv $(basename $@) $@
-
-rust%/gc.bin: rust%/src/main.rs rust%/Cargo.toml
-	cargo build --release --manifest-path $(word 2,$^) -Z unstable-options --out-dir $(shell dirname $@)
-	mv $(basename $@) $@
-
-#TODO: Update
-#pony/gc: pony/gc.pony
-#	ponyc
-
-# ------------------------------------------------
 # Time program execution
 # ------------------------------------------------
 
@@ -158,3 +72,90 @@ report.csv: time.c.txt \
 	# pony/time.txt <- Too slow to be included
 	bash -c 'for f in $^; do f2=$${f#time.}; f2=$${f2%.txt}; echo $$f2,$$(cat $$f); done | sort -t, -k 2,2 > $@'
 
+# ------------------------------------------------
+# Get Data
+# ------------------------------------------------
+
+# Download data
+Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa.gz:
+	wget ftp://ftp.ensembl.org/pub/release-67/fasta/homo_sapiens/dna/Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa.gz
+
+# Un-Gzip
+%: %.gz
+	zcat $< > $@
+
+# Multiply the length of the example data file
+# by the TESTFILE_MULTIPLICATION_FACTOR setting.
+chry_multiplied.fa: Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa Makefile
+	rm -f $@;
+	for i in $(shell seq 1 ${TESTFILE_MULTIPLICATION_FACTOR}); do \
+		cat $< >> $@; \
+	done;
+
+# ------------------------------------------------
+# Compile
+# ------------------------------------------------
+
+# C++
+%.bin: %.cpp
+	g++ -O3 -o $@ $<
+
+# C
+%.bin: %.c
+	gcc -O3 -Wall -o $@ $<
+
+# Crystal
+%.bin: %.cr
+	crystal build --release -o $@ $<
+
+# Crystal with threading and CSP-style concurrency
+crystal.001.csp/gc: crystal.001.gc/gc.cr
+	crystal build --release -Dpreview_mt -o $@ $<
+
+# Cython
+cython/gc.bin: cython/gc.pyx cython/gc.c
+	cython --embed $< \
+		&& gcc -I/usr/include/python2.7 -O3 -o $@ $(word 2,$^) -lpython2.7
+
+# D
+%.bin: %.d
+	ldc2 -O5 -boundscheck=off -release -of=$@ $<
+
+# FreePascal
+%.bin: %.pas
+	# NOTE: Whole program optimization needs two compiler runs
+	fpc -Ur -O3 -Xs- -OWall -FWgc -XX -CX -o$@ $< \
+		&& fpc -Ur -O3 -Xs- -Owall -Fwgc -XX -CX -o$@ $<
+
+# Go
+%.bin: %.go
+	go build -o $@ $<
+
+# Nim
+%.bin: %.nim
+	nim c --opt:speed --checks:off $< \
+		&& mv $(basename $@) $@
+
+# Python
+# We need to copy the python script to the canonical path to simplify the e.g.
+# the cleaning rule
+python/gc.bin: python/gc.py
+	cp $< $@
+
+# Pypy
+# ... and the same goes for pypy:
+pypy/gc.bin: pypy/gc.py
+	cp $< $@
+
+# Rust
+rust/gc.bin: rust/src/main.rs rust/Cargo.toml
+	cargo build --release --manifest-path $(word 2,$^) -Z unstable-options --out-dir $(shell dirname $@) \
+		&& mv $(basename $@) $@
+
+rust%/gc.bin: rust%/src/main.rs rust%/Cargo.toml
+	cargo build --release --manifest-path $(word 2,$^) -Z unstable-options --out-dir $(shell dirname $@) \
+		&& mv $(basename $@) $@
+
+#TODO: Update
+#pony/gc: pony/gc.pony
+#	ponyc
