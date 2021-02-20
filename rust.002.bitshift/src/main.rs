@@ -34,11 +34,7 @@ fn main() {
         }
         let mut chunker = line.chunks_exact(CHUNKSIZE);
         while let Some(chars) = chunker.next() {
-            totals += (0..CHUNKSIZE)
-                .into_iter()
-                .map(|c| chars[c])
-                .map(|b| VALUE[b as usize])
-                .sum::<u64>();
+            totals += chars.iter().map(|b| VALUE[*b as usize]).sum::<u64>();
         }
         for c in chunker.remainder() {
             totals += VALUE[*c as usize];
