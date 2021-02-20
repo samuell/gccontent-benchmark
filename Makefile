@@ -16,7 +16,7 @@ SLEEPTIME_SECONDS=0.5
 all: report.csv
 
 clean:
-	rm -rf time.*.txt \
+	rm -rf *.time \
 		*/gc.bin \
 		*/gc \
 		*/gc.o \
@@ -36,7 +36,7 @@ ifeq ($(UNAME_S),Darwin)
 endif
 
 #  Do the timing of program runs
-time.%.txt: %/gc.bin chry_multiplied.fa
+%.time: %/gc.bin chry_multiplied.fa
 	rm -f $@.tmp
 	for i in $(shell seq ${TEST_REPETITIONS}); do \
 		echo "Test #$$i ..."; \
@@ -50,27 +50,27 @@ time.%.txt: %/gc.bin chry_multiplied.fa
 # Create the final report
 # ------------------------------------------------
 
-report.csv: time.c.txt \
-	time.c.001.txt \
-	time.cpp.txt \
-	time.cpp.001.txt \
-	time.crystal.txt \
-	time.crystal.001.csp.txt \
-	time.cython.txt \
-	time.d.txt \
-	time.fpc.txt \
-	time.go.txt \
-	time.go.001.unroll.txt \
-	time.nim.txt \
-	time.python.txt \
-	time.pypy.txt \
-	time.python.txt \
-	time.rust.txt \
-	time.rust.001.txt \
-	time.rust.002.bitshift.txt
-	# julia/time.txt \
-	# pony/time.txt <- Too slow to be included
-	bash -c 'for f in $^; do f2=$${f#time.}; f2=$${f2%.txt}; echo $$f2,$$(cat $$f); done | sort -t, -k 2,2 > $@'
+report.csv: c.time \
+	c.001.time \
+	cpp.time \
+	cpp.001.time \
+	crystal.time \
+	crystal.001.csp.time \
+	cython.time \
+	d.time \
+	fpc.time \
+	go.time \
+	go.001.unroll.time \
+	nim.time \
+	python.time \
+	pypy.time \
+	python.time \
+	rust.time \
+	rust.001.time \
+	rust.002.bitshift.time
+	# julia.time \
+	# pony.time <- Too slow to be included
+	bash -c 'for f in $^; do f2=$${f%.time}; echo $$f2,$$(cat $$f); done | sort -t, -k 2,2 > $@'
 
 # ------------------------------------------------
 # Get Data
