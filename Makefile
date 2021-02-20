@@ -74,6 +74,7 @@ report.md: c.time c.version \
 	go.001.unroll.time go.version \
 	java.time java.version \
 	nim.time nim.version \
+	node.time node.version \
 	perl.time perl.version \
 	pypy.time pypy.version \
 	python.time python.version \
@@ -106,6 +107,8 @@ go.version:
 	go version > $@
 nim.version:
 	nim --version |& head -n 1 > $@
+node.version:
+	node --version > $@
 perl.version:
 	perl --version | head -n 2 | tail -n 1 > $@
 pony.version:
@@ -195,6 +198,12 @@ julia/gc.bin: julia/gc.jl
 %.bin: %.nim
 	nim c --opt:speed --checks:off $< \
 		&& mv $(basename $@) $@
+
+# Node
+# We need to copy the node script to the canonical path to simplify the e.g.
+# the cleaning rule
+node/gc.bin: node/gc.js
+	cp $< $@
 
 # Perl
 # We need to copy the perl script to the canonical path to simplify the e.g.
