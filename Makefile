@@ -227,11 +227,11 @@ pypy/gc.bin: pypy/gc.py
 
 # Rust
 rust/gc.bin: rust/src/main.rs rust/Cargo.toml
-	cargo build --release --manifest-path $(word 2,$^) -Z unstable-options --out-dir $(shell dirname $@) \
+	RUSTFLAGS="-C target-cpu=native" cargo build --release --manifest-path $(word 2,$^) -Z unstable-options --out-dir $(shell dirname $@) \
 		&& mv $(basename $@) $@
 
 rust%/gc.bin: rust%/src/main.rs rust%/Cargo.toml
-	cargo build --release --manifest-path $(word 2,$^) -Z unstable-options --out-dir $(shell dirname $@) \
+	RUSTFLAGS="-C target-cpu=native" cargo build --release --manifest-path $(word 2,$^) -Z unstable-options --out-dir $(shell dirname $@) \
 		&& mv $(basename $@) $@
 
 #TODO: Update
