@@ -83,7 +83,7 @@ some definition of that requirement, which is clearly very hard to define):
 
 | Language                                                                                       | Execution time (s) | Compiler versions                       |
 |------------------------------------------------------------------------------------------------|-------------------:|-----------------------------------------|
-| [C.002.rawio](c.002.rawio/gc.c)<br>H/T [@jmarshall](https://github.com/jmarshall)              |              0.040 | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0 |
+| [C.002.rawio](c.002.rawio/gc.c)<br>H/T [@jmarshall](https://github.com/jmarshall)              |              0.524 | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0 |
 
 ## More details about settings used when benchmarking
 
