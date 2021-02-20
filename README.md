@@ -4,9 +4,16 @@
 
 ## Usage
 
+```bash
+make
+cat report.md
 ```
-make all
-cat report.csv
+
+If you have [pandoc](http://pandoc.org/) installed, you can also create a HTML report:
+
+```bash
+make html-report
+<browser> report.html
 ```
 
 ## More info
