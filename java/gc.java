@@ -8,7 +8,7 @@ public class gc {
    * https://github.com/pditommaso/gccontent-benchmark
    */
   public static void main(String... args) throws IOException  {
-      BufferedReader stream = new BufferedReader(new FileReader("chry_multiplied.fa"));
+      BufferedReader stream = new BufferedReader(new FileReader("../chry_multiplied.fa"));
 
       int a = 0;
       int t = 0;

@@ -43,7 +43,7 @@ ifeq ($(UNAME_S),Darwin)
 	TIMECMD=gtime -f %e
 endif
 
-#  Do the timing of program runs
+# Do the timing of program runs
 %.time: %/gc.bin chry_multiplied.fa
 	rm -f $@.tmp
 	for i in $(shell seq ${TEST_REPETITIONS}); do \
@@ -72,6 +72,7 @@ report.md: c.time c.version \
 	fpc.time fpc.version \
 	go.time go.version \
 	go.001.unroll.time go.version \
+	java.time java.version \
 	nim.time nim.version \
 	perl.time perl.version \
 	pypy.time pypy.version \
@@ -179,6 +180,11 @@ cython/gc.bin: cython/gc.pyx
 %.bin: %.go
 	go build -o $@ $<
 
+# Java
+java/gc.bin: java/gc.java
+	javac $<:
+	cp java/gc.sh $@;
+
 # Julia
 # We need to copy the Julia script to the canonical path to simplify the e.g.
 # the cleaning rule
@@ -216,10 +222,6 @@ rust/gc.bin: rust/src/main.rs rust/Cargo.toml
 rust%/gc.bin: rust%/src/main.rs rust%/Cargo.toml
 	cargo build --release --manifest-path $(word 2,$^) -Z unstable-options --out-dir $(shell dirname $@) \
 		&& mv $(basename $@) $@
-
-# Java
-java/gc.bin: java/gc.java
-	javac $<
 
 #TODO: Update
 #pony/gc: pony/gc.pony
