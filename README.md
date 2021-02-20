@@ -35,7 +35,7 @@ in the code directories, or send a pull request with your own implementation
 implementation, you would create a `golang.001` folder, optionally with some
 tag appended to it, like: `golang.001.table-optimized`, etc).
 
-## Results <a name="current-results">
+## Results<a name="current-results">
 
 These are some results (Execution times in seconds, smaller is better) from
 running some of the tests in the Makefile, on a Dell Inspiron laptop with an
