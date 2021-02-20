@@ -84,7 +84,7 @@ report.md: c.time c.version \
 	#pony.time pony.version
 	echo "| Language | Time (s) | Compiler or interpreter version |" > $@
 	echo "|----------|----------|---------------------------------|" >> $@
-	bash -c 'for f in *.time; do f2=$${f%.time}; echo "| [$$f2]($$f2) | $$(cat $$f) | $$(cat $$(echo $$f2 | grep -oP "^[a-z0-9]+").version) |"; done | sort -n -t"|" -k 3,3 >> $@'
+	bash -c 'for f in *.time; do f2=$${f%.time}; echo "| [$$f2]($$f2) | $$(cat $$f) | $$(cat $$(echo $$f2 | grep -oP "^[a-z0-9]+").version) |"; done | sort -t"|" -k 3,3f >> $@'
 
 # ------------------------------------------------
 # Write version information for each language
