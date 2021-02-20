@@ -44,28 +44,28 @@ as operating system.
 
 (Below the tables are some more details about BIOS settings etc).
 
-| Language                                                                                               | Execution Time (s) | Compiler or interpreter version                                                         |
-|--------------------------------------------------------------------------------------------------------|--------------------|-----------------------------------------------------------------------------------------|
-| [rust.002.bitshift](rust.002.bitshift/src/main.rs)<br>H/T [@sstadick](https://github.com/sstadick)     | 0.784              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                             |
-| [rust.003.vectorized](rust.003.vectorized/src/main.rs)<br>H/T [@sstadick](https://github.com/sstadick) | 0.853              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                             |
-| [rust.001](rust.001/src/main.rs)<br>H/T [@sstadick](https://github.com/sstadick)                       | 0.961              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                             |
-| [c.001](c.001/gc.c)<br>H/T [@jmarshall](https://github.com/jmarshall)                                  | 0.97               | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                 |
-| [cpp.001](cpp.001/gc.cpp)<br>H/T [@jmarshall](https://github.com/jmarshall)                            | 1.025              | g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                 |
-| [d](d/gc.d)                                                                                            | 1.215              | LDC - the LLVM D compiler (1.22.0): based on DMD v2.092.1                               |
-| [c](c/gc.c)                                                                                            | 1.226              | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                 |
-| [go.001.unroll](go.001.unroll/gc.go)<br>H/T [@egonelbre](https://github.com/egonelbre)                 | 1.616              | go version go1.15 linux/amd64                                                           |
-| [rust](rust/src/main.rs)<br>H/T [@rob-p](https://github.com/rob-p)                                     | 1.722              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                             |
-| [julia](julia/gc.jl)<br>H/T [@dcjones](https://github.com/dcjones)                                     | 1.926              | julia version 1.5.3                                                                     |
-| [go](go/gc.go)                                                                                         | 1.937              | go version go1.15 linux/amd64                                                           |
-| [pypy](pypy/gc.py)<br>H/T [@nh13](https://github.com/nh13)                                             | 2.679              | Python 2.7.13 (5.10.0+dfsg-3build2, Feb 06 2018, 18:37:50) [PyPy 5.10.0 with GCC 7.3.0] |
-| [cpp](cpp/gc.cpp)                                                                                      | 2.832              | g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                 |
-| [crystal.001.csp](crystal.001.csp/gc.cr)                                                               | 4.198              | Crystal 0.35.1 [5999ae29b] (2020-06-19)  LLVM: 8.0.0                                    |
-| [crystal](crystal/gc.cr)                                                                               | 4.48               | Crystal 0.35.1 [5999ae29b] (2020-06-19)  LLVM: 8.0.0                                    |
-| [nim](nim/gc.nim)                                                                                      | 4.498              | Nim Compiler Version 0.17.2 (2018-02-05) [Linux: amd64]                                 |
-| [cython](cython/gc.pyx)<br>H/T [@nh13](https://github.com/nh13)                                        | 6.03               | Cython version 0.26.1                                                                   |
-| [fpc](fpc/gc.pas)                                                                                      | 6.578              | Free Pascal Compiler version 3.0.4+dfsg-18ubuntu2 [2018/08/29] for x86_64               |
-| [perl](perl/gc.pl)<br>H/T [@sstadick](https://github.com/sstadick)                                     | 7.323              | Perl 5, version 26, subversion 1 (v5.26.1) built for x86_64-linux-gnu-thread-multi      |
-| [python](python/gc.py)<br>H/T [@nh13](https://github.com/nh13)                                         | 8.847              | Python 3.7.0                                                                            |
+| Language                                                                                                      | Execution Time (s) | Compiler or interpreter version                                                         |
+|---------------------------------------------------------------------------------------------------------------|--------------------|-----------------------------------------------------------------------------------------|
+| [rust.002.bitshift](rust.002.bitshift/src/main.rs)&nbsp;H/T&nbsp;[@sstadick](https://github.com/sstadick)                   | 0.784              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                             |
+| [rust.003.vectorized](rust.003.vectorized/src/main.rs)&nbsp;H/T&nbsp;[@sstadick](https://github.com/sstadick) | 0.853              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                             |
+| [rust.001](rust.001/src/main.rs)&nbsp;H/T&nbsp;[@sstadick](https://github.com/sstadick)                       | 0.961              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                             |
+| [c.001](c.001/gc.c)&nbsp;H/T&nbsp;[@jmarshall](https://github.com/jmarshall)                                  | 0.97               | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                 |
+| [cpp.001](cpp.001/gc.cpp)&nbsp;H/T&nbsp;[@jmarshall](https://github.com/jmarshall)                            | 1.025              | g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                 |
+| [d](d/gc.d)                                                                                                   | 1.215              | LDC - the LLVM D compiler (1.22.0): based on DMD v2.092.1                               |
+| [c](c/gc.c)                                                                                                   | 1.226              | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                 |
+| [go.001.unroll](go.001.unroll/gc.go)&nbsp;H/T&nbsp;[@egonelbre](https://github.com/egonelbre)                 | 1.616              | go version go1.15 linux/amd64                                                           |
+| [rust](rust/src/main.rs)&nbsp;H/T&nbsp;[@rob-p](https://github.com/rob-p)                                     | 1.722              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                             |
+| [julia](julia/gc.jl)&nbsp;H/T&nbsp;[@dcjones](https://github.com/dcjones)                                     | 1.926              | julia version 1.5.3                                                                     |
+| [go](go/gc.go)                                                                                                | 1.937              | go version go1.15 linux/amd64                                                           |
+| [pypy](pypy/gc.py)&nbsp;H/T&nbsp;[@nh13](https://github.com/nh13)                                             | 2.679              | Python 2.7.13 (5.10.0+dfsg-3build2, Feb 06 2018, 18:37:50) [PyPy 5.10.0 with GCC 7.3.0] |
+| [cpp](cpp/gc.cpp)                                                                                             | 2.832              | g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                 |
+| [crystal.001.csp](crystal.001.csp/gc.cr)                                                                      | 4.198              | Crystal 0.35.1 [5999ae29b] (2020-06-19)  LLVM: 8.0.0                                    |
+| [crystal](crystal/gc.cr)                                                                                      | 4.48               | Crystal 0.35.1 [5999ae29b] (2020-06-19)  LLVM: 8.0.0                                    |
+| [nim](nim/gc.nim)                                                                                             | 4.498              | Nim Compiler Version 0.17.2 (2018-02-05) [Linux: amd64]                                 |
+| [cython](cython/gc.pyx)&nbsp;H/T&nbsp;[@nh13](https://github.com/nh13)                                        | 6.03               | Cython version 0.26.1                                                                   |
+| [fpc](fpc/gc.pas)                                                                                             | 6.578              | Free Pascal Compiler version 3.0.4+dfsg-18ubuntu2 [2018/08/29] for x86_64               |
+| [perl](perl/gc.pl)&nbsp;H/T&nbsp;[@sstadick](https://github.com/sstadick)                                     | 7.323              | Perl 5, version 26, subversion 1 (v5.26.1) built for x86_64-linux-gnu-thread-multi      |
+| [python](python/gc.py)&nbsp;H/T&nbsp;[@nh13](https://github.com/nh13)                                         | 8.847              | Python 3.7.0                                                                            |
 
 ## Results with relaxed constraints on reading line-by-line
 
