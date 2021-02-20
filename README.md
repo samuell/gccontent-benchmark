@@ -73,6 +73,7 @@ as operating system.
 | [java](java/gc.java)                                   | 5.779              | openjdk version "11.0.10" 2021-01-19 OpenJDK Runtime Environment GraalVM CE 21.0.0.2 (build 11.0.10+8-jvmci-21.0-b06) |
 | [cython](cython/gc.pyx)                                | 6.03               | Cython version 0.26.1                                                                                                 |
 | [fpc](fpc/gc.pas)                                      | 6.578              | Free Pascal Compiler version 3.0.4+dfsg-18ubuntu2 [2018/08/29] for x86_64                                             |
+| [node](node/gc.js)                                     | 6.836              | Node.js v15.9.0                                                                                                       |
 | [perl](perl/gc.pl)                                     | 7.323              | Perl 5, version 26, subversion 1 (v5.26.1) built for x86_64-linux-gnu-thread-multi                                    |
 | [python](python/gc.py)                                 | 8.847              | Python 3.7.0                                                                                                          |
 
