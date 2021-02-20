@@ -9,6 +9,8 @@ TESTFILE_MULTIPLICATION_FACTOR=10
 TEST_REPETITIONS=10
 SLEEPTIME_SECONDS=0.5
 
+CRYSTAL_WORKERS=2
+
 # ------------------------------------------------
 # Main rules
 # ------------------------------------------------
@@ -114,9 +116,9 @@ crystal.001.csp/gc: crystal.001.gc/gc.cr
 	crystal build --release -Dpreview_mt -o $@ $<
 
 # Cython
-cython/gc.bin: cython/gc.pyx cython/gc.c
+cython/gc.bin: cython/gc.pyx
 	cython --embed $< \
-		&& gcc -I/usr/include/python2.7 -O3 -o $@ $(word 2,$^) -lpython2.7
+		&& gcc -I/usr/include/python2.7 -O3 -o $@ cython/gc.c -lpython2.7
 
 # D
 %.bin: %.d
