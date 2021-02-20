@@ -19,7 +19,7 @@ int main()
         const unsigned char *s =
             reinterpret_cast<const unsigned char *>(line.c_str());
 
-        if (*s == '>') continue;
+        if (__builtin_expect(*s == '>', 0)) continue;
 
         unsigned char c;
         while ((c = *s++) != '\0')

@@ -15,7 +15,7 @@ int main()
 
     char line[4096];
     while (fgets(line, sizeof line, f)) {
-        if (line[0] == '>') continue;
+        if (__builtin_expect(line[0] == '>', 0)) continue;
 
         unsigned char *s = (unsigned char *) line;
         unsigned char c;
