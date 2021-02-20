@@ -62,7 +62,6 @@ report.csv: c.time \
 	go.time \
 	go.001.unroll.time \
 	nim.time \
-	python.time \
 	pypy.time \
 	python.time \
 	rust.time \
@@ -130,6 +129,12 @@ cython/gc.bin: cython/gc.pyx cython/gc.c
 # Go
 %.bin: %.go
 	go build -o $@ $<
+
+# Julia
+# We need to copy the Julia script to the canonical path to simplify the e.g.
+# the cleaning rule
+julia/gc.bin: julia/gc.jl
+	cp $< $@
 
 # Nim
 %.bin: %.nim
