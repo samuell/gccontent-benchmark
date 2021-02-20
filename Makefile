@@ -64,6 +64,7 @@ report.html: report.md
 
 report.md: c.time c.version \
 	c.001.time c.version \
+	c.003.ril.time c.version \
 	cpp.time cpp.version \
 	cpp.001.time cpp.version \
 	crystal.time crystal.version \
@@ -74,6 +75,7 @@ report.md: c.time c.version \
 	go.time go.version \
 	go.001.unroll.time go.version \
 	java.time java.version \
+	graalvm.time graalvm.version \
 	nim.time nim.version \
 	node.time node.version \
 	perl.time perl.version \
@@ -106,6 +108,8 @@ fpc.version:
 	fpc -version |& head -n 1 | cut -d" " -f 2-9 > $@
 go.version:
 	go version > $@
+graalvm.version:
+	native-image --version > $@
 nim.version:
 	nim --version |& head -n 1 > $@
 node.version:
@@ -123,7 +127,7 @@ rust.version:
 julia.version:
 	julia --version > $@
 java.version:
-	java -version 2>&1 | head -n 1 > $@
+	java -version 2>&1 | head -n 2 | tr "\n" " " > $@
 
 # ------------------------------------------------
 # Get Data
@@ -151,7 +155,7 @@ chry_multiplied.fa: Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa
 
 # C
 %.bin: %.c
-	gcc -O3 -Wall -o $@ $<
+	gcc -O3 -o $@ $<
 
 # C++
 %.bin: %.cpp
@@ -183,6 +187,11 @@ cython/gc.bin: cython/gc.pyx
 # Go
 %.bin: %.go
 	go build -o $@ $<
+
+# GraalVM
+graalvm/gc.bin: graalvm/gc.java
+	bash -c 'cd graalvm && javac gc.java && native-image -O5 gc && cd ..';
+	cp graalvm/gc $@;
 
 # Java
 java/gc.class: java/gc.java

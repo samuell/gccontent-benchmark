@@ -1,5 +1,4 @@
 #!/usr/bin/env pypy
-import re
 import string
  
 def main():
