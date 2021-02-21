@@ -85,6 +85,7 @@ report.md: c.time c.version \
 	rust.001.time rust.version \
 	rust.002.bitshift.time rust.version \
 	rust.003.vectorized.time rust.version \
+	rust.004.simd.time rust.version \
 	julia.time julia.version
 	#pony.time pony.version
 	echo "| Language | Time (s) | Compiler or interpreter version |" > $@
@@ -139,7 +140,7 @@ Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa.gz:
 
 # Un-Gzip
 %: %.gz
-	zcat $< > $@
+	zcat < $< > $@
 
 # Multiply the length of the example data file
 # by the TESTFILE_MULTIPLICATION_FACTOR setting.
@@ -236,11 +237,11 @@ pypy/gc.bin: pypy/gc.py
 
 # Rust
 rust/gc.bin: rust/src/main.rs rust/Cargo.toml
-	RUSTFLAGS="-C target-cpu=native" cargo build --release --manifest-path $(word 2,$^) -Z unstable-options --out-dir $(shell dirname $@) \
+	RUSTFLAGS="-C target-cpu=native" cargo +nightly build --release --manifest-path $(word 2,$^) -Z unstable-options --out-dir $(shell dirname $@) \
 		&& mv $(basename $@) $@
 
 rust%/gc.bin: rust%/src/main.rs rust%/Cargo.toml
-	RUSTFLAGS="-C target-cpu=native" cargo build --release --manifest-path $(word 2,$^) -Z unstable-options --out-dir $(shell dirname $@) \
+	RUSTFLAGS="-C target-cpu=native" cargo +nightly build --release --manifest-path $(word 2,$^) -Z unstable-options --out-dir $(shell dirname $@) \
 		&& mv $(basename $@) $@
 
 #TODO: Update
