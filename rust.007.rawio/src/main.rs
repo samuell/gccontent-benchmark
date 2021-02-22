@@ -1,16 +1,15 @@
-#![feature(core_intrinsics)]
+#![feature(slice_internals)]
 #[cfg(target_arch = "x86")]
 use std::arch::x86::*;
 #[cfg(target_arch = "x86_64")]
 use std::arch::x86_64::*;
-
 use std::fs::File;
-use std::io::{BufRead, BufReader};
+use std::io::{BufReader, Read};
 
-use std::intrinsics::unlikely;
+use core::slice::memchr;
 
+const BUFSIZE: usize = 32768;
 const CHUNKSIZE: usize = 32;
-const BUFSIZE: usize = 4096;
 
 /// Sum each adjacent 8bit lane into u64 x 4
 #[inline]
@@ -71,6 +70,7 @@ fn count_gc_at(buffer: &[u8]) -> (i64, i64) {
 
         // Work out the reminder post super chunking
         let mut chunker = superchunker.remainder().chunks_exact(CHUNKSIZE);
+        // let mut chunker = buffer.chunks_exact(CHUNKSIZE);
         let mut counter = 0;
         while let Some(chunk) = chunker.next() {
             let v = _mm256_loadu_si256(chunk as *const _ as *const __m256i);
@@ -93,6 +93,7 @@ fn count_gc_at(buffer: &[u8]) -> (i64, i64) {
         at_sums_64 = _mm256_add_epi64(at_sums_64, hsum_epu8_epu64(at_sums_8));
         gc += hsum_epu64_scalar(gc_sums_64);
         at += hsum_epu64_scalar(at_sums_64);
+
         // Finally sum up an remaining bytes
         for c in chunker.remainder() {
             gc += (*c & 10 == 2) as i64;
@@ -109,37 +110,46 @@ fn main() {
     let file = File::open(filename).unwrap();
     let mut reader = BufReader::new(file);
 
-    let mut line = Vec::with_capacity(BUFSIZE);
     let mut at = 0;
     let mut gc = 0;
 
-    loop {
-        if unlikely(reader.read_until(b'\n', &mut line).expect("error reading") == 0) {
+    let mut buffer = [0u8; BUFSIZE];
+
+    let mut inheader = true;
+
+    'reader: loop {
+        if reader.read(&mut buffer).expect("Read error") == 0 {
             break;
         }
 
-        if unlikely(line[0] == b'>') {
-            line.clear();
-            continue;
-        }
+        let mut stop = 0;
+        loop {
+            let offset = if inheader {
+                match memchr::memchr(b'\n', &buffer[stop..buffer.len()]) {
+                    Some(pos) => {
+                        inheader = false;
+                        stop + pos + 1
+                    }
+                    None => continue 'reader,
+                }
+            } else {
+                0
+            };
 
-        // Try to read more lines
-        let buffer = loop {
-            let line_len = line.len();
-            let bytes_read = reader.read_until(b'\n', &mut line).expect("error reading");
+            stop = match memchr::memchr(b'>', &buffer[offset..buffer.len()]) {
+                Some(pos) => offset + pos,
+                None => buffer.len(),
+            };
 
-            if bytes_read > 0 && line[line_len] == b'>' {
-                break &line[0..line_len];
-            } else if bytes_read == 0 || line.len() >= BUFSIZE {
-                break &line;
+            let (gc_buf, at_buf) = count_gc_at(&buffer[offset..stop]);
+            gc += gc_buf;
+            at += at_buf;
+
+            if stop == buffer.len() {
+                break;
             }
-        };
-
-        let (gc_buf, at_buf) = count_gc_at(&buffer);
-        gc += gc_buf;
-        at += at_buf;
-
-        line.clear();
+            inheader = true;
+        }
     }
 
     let gc_ratio: f64 = gc as f64 / (gc as f64 + at as f64);
