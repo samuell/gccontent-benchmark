@@ -1,13 +1,9 @@
 [package]
-name = "gc"
-version = "0.1.0"
 authors = ["Seth Statick <sstadick@gmail.com>"]
 edition = "2018"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+name = "gc"
+version = "0.1.0"
 
 [profile.release]
-lto = "fat"
 codegen-units = 1
-
-[dependencies]
+lto = "fat"
