@@ -78,6 +78,7 @@ report.md: c.time c.version \
 	java.time java.version \
 	graalvm.time graalvm.version \
 	nim.time nim.version \
+	nim.001.time nim.version \
 	node.time node.version \
 	perl.time perl.version \
 	pypy.time pypy.version \
@@ -209,7 +210,7 @@ julia/gc.bin: julia/gc.jl
 
 # Nim
 %.bin: %.nim
-	nim c -d:danger --opt:speed --checks:off $< \
+	nim c -d:danger $< \
 		&& mv $(basename $@) $@
 
 # Node
