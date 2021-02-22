@@ -68,10 +68,11 @@ as operating system.
 | [pypy](pypy/gc.py)                                     | 2.677              | Python 2.7.13 (5.10.0+dfsg-3build2, Feb 06 2018, 18:37:50) [PyPy 5.10.0 with GCC 7.3.0]                               |
 | [cpp](cpp/gc.cpp)                                      | 2.832              | g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                                               |
 | [rust](rust/src/main.rs)                               | 3.195              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                                                           |
+| [crystal](crystal/gc.cr)                               | 4.054              | Crystal 0.36.1 [c3a3c1823] (2021-02-02)  LLVM: 10.0.0                                                                 |
 | [nim](nim/gc.nim)                                      | 4.119              | Nim Compiler Version 1.4.2 [Linux: amd64]                                                                             |
-| [crystal.001.csp](crystal.001.csp/gc.cr)               | 4.198              | Crystal 0.35.1 [5999ae29b] (2020-06-19)  LLVM: 8.0.0                                                                  |
+| [java](java/java/gc.java)                              | 4.279              | openjdk version "11.0.10" 2021-01-19 OpenJDK Runtime Environment GraalVM CE 21.0.0.2 (build 11.0.10+8-jvmci-21.0-b06) |
+| [crystal.001.csp](crystal.001.csp/gc.cr)               | 4.283              | Crystal 0.36.1 [c3a3c1823] (2021-02-02)  LLVM: 10.0.0                                                                 |
 | [java](java/gc.java)                                   | 4.284              | openjdk version "11.0.10" 2021-01-19 OpenJDK Runtime Environment GraalVM CE 21.0.0.2 (build 11.0.10+8-jvmci-21.0-b06) |
-| [crystal](crystal/gc.cr)                               | 4.480              | Crystal 0.35.1 [5999ae29b] (2020-06-19)  LLVM: 8.0.0                                                                  |
 | [cython](cython/gc.pyx)                                | 6.016              | Cython version 0.26.1                                                                                                 |
 | [fpc](fpc/gc.pas)                                      | 6.578              | Free Pascal Compiler version 3.0.4+dfsg-18ubuntu2 [2018/08/29] for x86_64                                             |
 | [node](node/gc.js)                                     | 6.836              | v15.9.0                                                                                                               |

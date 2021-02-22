@@ -69,6 +69,7 @@ report.md: c.time c.version \
 	cpp.001.time cpp.version \
 	crystal.time crystal.version \
 	crystal.001.csp.time crystal.version \
+	crystal.002.peek.time crystal.version \
 	cython.time cython.version \
 	d.time d.version \
 	fpc.time fpc.version \
