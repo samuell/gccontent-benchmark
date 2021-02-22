@@ -207,7 +207,7 @@ julia/gc.bin: julia/gc.jl
 
 # Nim
 %.bin: %.nim
-	nim c --opt:speed --checks:off $< \
+	nim c -d:danger --opt:speed --checks:off $< \
 		&& mv $(basename $@) $@
 
 # Node

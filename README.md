@@ -67,6 +67,7 @@ as operating system.
 | [pypy](pypy/gc.py)                                     | 2.679              | Python 2.7.13 (5.10.0+dfsg-3build2, Feb 06 2018, 18:37:50) [PyPy 5.10.0 with GCC 7.3.0]                               |
 | [cpp](cpp/gc.cpp)                                      | 2.832              | g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                                               |
 | [rust](rust/src/main.rs)                               | 3.198              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                                                           |
+| [nim](nim)                                             | 4.131              | Nim Compiler Version 1.4.2 [Linux: amd64]                                                                             |
 | [crystal.001.csp](crystal.001.csp/gc.cr)               | 4.198              | Crystal 0.35.1 [5999ae29b] (2020-06-19)  LLVM: 8.0.0                                                                  |
 | [crystal](crystal/gc.cr)                               | 4.480              | Crystal 0.35.1 [5999ae29b] (2020-06-19)  LLVM: 8.0.0                                                                  |
 | [nim](nim/gc.nim)                                      | 4.498              | Nim Compiler Version 0.17.2 (2018-02-05) [Linux: amd64]                                                               |
