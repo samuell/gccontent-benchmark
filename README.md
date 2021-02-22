@@ -51,45 +51,45 @@ as operating system.
 
 (Below the tables are some more details about BIOS settings etc).
 
-| Language and implementation                            | Execution time (s) | Compiler or interpreter version                                                                                       |   |
-|--------------------------------------------------------|--------------------|-----------------------------------------------------------------------------------------------------------------------|---|
-| [rust.003.vectorized](rust.003.vectorized/src/main.rs) | 0.442              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                                                           |   |
+| Language and implementation                            | Execution time (s) | Compiler or interpreter version                                                                                       |
+|--------------------------------------------------------|--------------------|-----------------------------------------------------------------------------------------------------------------------|
+| [rust.003.vectorized](rust.003.vectorized/src/main.rs) | 0.442              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                                                           |
 | [rust.004.simd](rust.004.simd/src/main.rs)             | 0.445              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                                                           |
-| [rust.002.bitshift](rust.002.bitshift/src/main.rs)     | 0.695              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                                                           |   |
-| [rust.001](rust.001/src/main.rs)                       | 0.891              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                                                           |   |
-| [c.001](c.001/gc.c)                                    | 0.970              | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                                               |   |
-| [cpp.001](cpp.001/gc.)                                 | 1.025              | g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                                               |   |
-| [d](d/gc.d)                                            | 1.215              | LDC - the LLVM D compiler (1.22.0): based on DMD v2.092.1                                                             |   |
-| [c](c/gc.c)                                            | 1.226              | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                                               |   |
-| [go.001.unroll](go.001.unroll/gc.go)                   | 1.616              | go version go1.15 linux/amd64                                                                                         |   |
-| [julia](julia/gc.jl)                                   | 1.926              | julia version 1.5.3                                                                                                   |   |
-| [go](go/gc.go)                                         | 1.937              | go version go1.15 linux/amd64                                                                                         |   |
-| [c.003.ril](c.003.ril/gc.c)                            | 1.955              | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                                               |   |
-| [pypy](pypy/gc.py)                                     | 2.677              | Python 2.7.13 (5.10.0+dfsg-3build2, Feb 06 2018, 18:37:50) [PyPy 5.10.0 with GCC 7.3.0]                               |   |
-| [cpp](cpp/gc.cpp)                                      | 2.832              | g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                                               |   |
-| [rust](rust/src/main.rs)                               | 3.195              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                                                           |   |
-| [nim](nim/gc.nim)                                      | 4.119              | Nim Compiler Version 1.4.2 [Linux: amd64]                                                                             |   |
-| [crystal.001.csp](crystal.001.csp/gc.cr)               | 4.198              | Crystal 0.35.1 [5999ae29b] (2020-06-19)  LLVM: 8.0.0                                                                  |   |
-| [crystal](crystal/gc.cr)                               | 4.480              | Crystal 0.35.1 [5999ae29b] (2020-06-19)  LLVM: 8.0.0                                                                  |   |
-| [java](java/gc.java)                                   | 5.779              | openjdk version "11.0.10" 2021-01-19 OpenJDK Runtime Environment GraalVM CE 21.0.0.2 (build 11.0.10+8-jvmci-21.0-b06) |   |
-| [cython](cython/gc.pyx)                                | 6.016              | Cython version 0.26.1                                                                                                 |   |
-| [fpc](fpc/gc.pas)                                      | 6.578              | Free Pascal Compiler version 3.0.4+dfsg-18ubuntu2 [2018/08/29] for x86_64                                             |   |
-| [node](node/gc.js)                                     | 6.836              | v15.9.0                                                                                                               |   |
-| [perl](perl/gc.pl)                                     | 7.323              | This is perl 5, version 26, subversion 1 (v5.26.1) built for x86_64-linux-gnu-thread-multi                            |   |
-| [python](python/gc.py)                                 | 8.855              | Python 3.7.0                                                                                                          |   |
-| [graalvm](graalvm/gc.java)                             | 11.734             | GraalVM Version 21.0.0.2 (Java Version 11.0.10+8-jvmci-21.0-b06)                                                      |   |
+| [rust.002.bitshift](rust.002.bitshift/src/main.rs)     | 0.695              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                                                           |
+| [rust.001](rust.001/src/main.rs)                       | 0.891              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                                                           |
+| [c.001](c.001/gc.c)                                    | 0.970              | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                                               |
+| [cpp.001](cpp.001/gc.)                                 | 1.025              | g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                                               |
+| [d](d/gc.d)                                            | 1.215              | LDC - the LLVM D compiler (1.22.0): based on DMD v2.092.1                                                             |
+| [c](c/gc.c)                                            | 1.226              | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                                               |
+| [go.001.unroll](go.001.unroll/gc.go)                   | 1.616              | go version go1.15 linux/amd64                                                                                         |
+| [julia](julia/gc.jl)                                   | 1.926              | julia version 1.5.3                                                                                                   |
+| [go](go/gc.go)                                         | 1.937              | go version go1.15 linux/amd64                                                                                         |
+| [c.003.ril](c.003.ril/gc.c)                            | 1.955              | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                                               |
+| [pypy](pypy/gc.py)                                     | 2.677              | Python 2.7.13 (5.10.0+dfsg-3build2, Feb 06 2018, 18:37:50) [PyPy 5.10.0 with GCC 7.3.0]                               |
+| [cpp](cpp/gc.cpp)                                      | 2.832              | g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                                               |
+| [rust](rust/src/main.rs)                               | 3.195              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                                                           |
+| [nim](nim/gc.nim)                                      | 4.119              | Nim Compiler Version 1.4.2 [Linux: amd64]                                                                             |
+| [crystal.001.csp](crystal.001.csp/gc.cr)               | 4.198              | Crystal 0.35.1 [5999ae29b] (2020-06-19)  LLVM: 8.0.0                                                                  |
+| [crystal](crystal/gc.cr)                               | 4.480              | Crystal 0.35.1 [5999ae29b] (2020-06-19)  LLVM: 8.0.0                                                                  |
+| [java](java/gc.java)                                   | 5.779              | openjdk version "11.0.10" 2021-01-19 OpenJDK Runtime Environment GraalVM CE 21.0.0.2 (build 11.0.10+8-jvmci-21.0-b06) |
+| [cython](cython/gc.pyx)                                | 6.016              | Cython version 0.26.1                                                                                                 |
+| [fpc](fpc/gc.pas)                                      | 6.578              | Free Pascal Compiler version 3.0.4+dfsg-18ubuntu2 [2018/08/29] for x86_64                                             |
+| [node](node/gc.js)                                     | 6.836              | v15.9.0                                                                                                               |
+| [perl](perl/gc.pl)                                     | 7.323              | This is perl 5, version 26, subversion 1 (v5.26.1) built for x86_64-linux-gnu-thread-multi                            |
+| [python](python/gc.py)                                 | 8.855              | Python 3.7.0                                                                                                          |
+| [graalvm](graalvm/gc.java)                             | 11.734             | GraalVM Version 21.0.0.2 (Java Version 11.0.10+8-jvmci-21.0-b06)                                                      |
 
 ## Results with relaxed constraints on reading line-by-line
 
 The below contributed versions departs slightly from reading line-by-line (by
 some definition of that requirement, which is clearly very hard to define):
 
-| Language                                                                                       | Execution time (s) | Compiler versions                       |
-|------------------------------------------------------------------------------------------------|-------------------:|-----------------------------------------|
-| [rust.007.rawio](rust.007.rawio)<br>H/T [@jmarshall](https://github.com/sstadick) | 0.221 | rustc 1.52.0-nightly (152f66092 2021-02-17) |
-| [rust.005.rawio](rust.005.rawio)<br>H/T [@jmarshall](https://github.com/jmarshall) | 0.318 | rustc 1.52.0-nightly (152f66092 2021-02-17) |
-| [C.002.rawio](c.002.rawio/gc.c)<br>H/T [@jmarshall](https://github.com/sstadick)              |              0.524 | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0 |
-| [rust.006.rawio](rust.006.rawio)<br>H/T [@jmarshall](https://github.com/sstadick) | 0.539 | rustc 1.52.0-nightly (152f66092 2021-02-17) |
+| Language                         | Execution time (s) | Compiler versions                           |
+|----------------------------------|-------------------:|---------------------------------------------|
+| [rust.007.rawio](rust.007.rawio) |              0.221 | rustc 1.52.0-nightly (152f66092 2021-02-17) |
+| [rust.005.rawio](rust.005.rawio) |              0.318 | rustc 1.52.0-nightly (152f66092 2021-02-17) |
+| [C.002.rawio](c.002.rawio/gc.c)  |              0.524 | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0     |
+| [rust.006.rawio](rust.006.rawio) |              0.539 | rustc 1.52.0-nightly (152f66092 2021-02-17) |
 
 ## More details about settings used when benchmarking
 
