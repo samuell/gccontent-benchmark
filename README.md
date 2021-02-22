@@ -54,6 +54,7 @@ as operating system.
 | Language and implementation                            | Execution time (s) | Compiler or interpreter version                                                                                       |   |
 |--------------------------------------------------------|--------------------|-----------------------------------------------------------------------------------------------------------------------|---|
 | [rust.003.vectorized](rust.003.vectorized/src/main.rs) | 0.442              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                                                           |   |
+| [rust.004.simd](rust.004.simd/src/main.rs)             | 0.445              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                                                           |
 | [rust.002.bitshift](rust.002.bitshift/src/main.rs)     | 0.695              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                                                           |   |
 | [rust.001](rust.001/src/main.rs)                       | 0.891              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                                                           |   |
 | [c.001](c.001/gc.c)                                    | 0.970              | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                                               |   |
