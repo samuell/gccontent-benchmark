@@ -1,5 +1,4 @@
 gcfile = File.new("chry_multiplied.fa")
-gcfile.buffer_size = ARGV[0].to_i
 
 at = 0
 gc = 0
