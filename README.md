@@ -65,7 +65,8 @@ as operating system.
 | [julia](julia/gc.jl)                                   | 1.926              | julia version 1.5.3                                                                                                   |
 | [go](go/gc.go)                                         | 1.937              | go version go1.15 linux/amd64                                                                                         |
 | [c.003.ril](c.003.ril/gc.c)                            | 1.955              | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                                               |
-| [crystal.002.peek](crystal.002.peek)                   | 2.369              | Crystal 0.36.1 [c3a3c1823] (2021-02-02)  LLVM: 10.0.0                                                                 |
+| [nim.001](nim.001/nim.001/gc.nim)                      | 2.281              | Nim Compiler Version 1.2.6 [Linux: amd64]                                                                             |
+| [crystal.002.peek](crystal.002.peek/gc.cr)             | 2.369              | Crystal 0.36.1 [c3a3c1823] (2021-02-02)  LLVM: 10.0.0                                                                 |
 | [pypy](pypy/gc.py)                                     | 2.677              | Python 2.7.13 (5.10.0+dfsg-3build2, Feb 06 2018, 18:37:50) [PyPy 5.10.0 with GCC 7.3.0]                               |
 | [cpp](cpp/gc.cpp)                                      | 2.832              | g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                                               |
 | [rust](rust/src/main.rs)                               | 3.195              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                                                           |
