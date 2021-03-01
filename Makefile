@@ -62,7 +62,8 @@ endif
 report.html: report.md
 	pandoc -i $< -o $@
 
-report.md: c.time c.version \
+report.md: ada.time ada.version \
+	c.time c.version \
 	c.001.time c.version \
 	c.003.ril.time c.version \
 	cpp.time cpp.version \
@@ -99,6 +100,8 @@ report.md: c.time c.version \
 # ------------------------------------------------
 # Write version information for each language
 # ------------------------------------------------
+ada.version:
+	gnat --version | head -n 1 > $@
 c.version:
 	gcc --version | head -n 1 > $@
 cpp.version:
@@ -157,6 +160,10 @@ chry_multiplied.fa: Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa
 # ------------------------------------------------
 # Compile
 # ------------------------------------------------
+
+# Ada
+%.bin: %.adb
+	gnatmake -cargs "-O3" -o $@ $<
 
 # C
 %.bin: %.c
