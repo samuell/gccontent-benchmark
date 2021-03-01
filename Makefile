@@ -80,6 +80,7 @@ report.md: c.time c.version \
 	nim.time nim.version \
 	nim.001.time nim.version \
 	nim.002.time nim.version \
+	nim.003.zerocopy.time nim.version \
 	node.time node.version \
 	perl.time perl.version \
 	pypy.time pypy.version \
