@@ -62,8 +62,8 @@ as operating system.
 | [d](d/gc.d)                                            | 1.215              | LDC - the LLVM D compiler (1.22.0): based on DMD v2.092.1                                                             |
 | [c](c/gc.c)                                            | 1.226              | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                                               |
 | [go.001.unroll](go.001.unroll/gc.go)                   | 1.616              | go version go1.15 linux/amd64                                                                                         |
-| [nim.003.zerocopy](nim.003.zerocopy/gc.go)             | 1.660              | Nim Compiler Version 1.2.6 [Linux: amd64]                                                                             |
-| [nim.002](nim.002/gc.go)                               | 1.703              | Nim Compiler Version 1.2.6 [Linux: amd64]                                                                             |
+| [nim.003.zerocopy](nim.003.zerocopy/gc.nim)            | 1.660              | Nim Compiler Version 1.2.6 [Linux: amd64]                                                                             |
+| [nim.002](nim.002/gc.nim)                              | 1.703              | Nim Compiler Version 1.2.6 [Linux: amd64]                                                                             |
 | [julia](julia/gc.jl)                                   | 1.926              | julia version 1.5.3                                                                                                   |
 | [go](go/gc.go)                                         | 1.937              | go version go1.15 linux/amd64                                                                                         |
 | [c.003.ril](c.003.ril/gc.c)                            | 1.955              | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                                               |
