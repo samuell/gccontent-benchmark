@@ -163,7 +163,7 @@ chry_multiplied.fa: Homo_sapiens.GRCh37.67.dna_rm.chromosome.Y.fa
 
 # Ada
 %.bin: %.adb
-	gnatmake -cargs "-O3" -o $@ $<
+	gnatmake -o $@ $< -cargs "-O3" -cargs "-flto"
 
 # C
 %.bin: %.c
