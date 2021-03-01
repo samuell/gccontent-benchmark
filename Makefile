@@ -212,7 +212,7 @@ julia/gc.bin: julia/gc.jl
 
 # Nim
 %.bin: %.nim
-	nim c -d:danger $< \
+	nim c -d:danger --passC:"-flto" $< \
 		&& mv $(basename $@) $@
 
 # Node
