@@ -62,6 +62,8 @@ as operating system.
 | [d](d/gc.d)                                            | 1.215              | LDC - the LLVM D compiler (1.22.0): based on DMD v2.092.1                                                             |
 | [c](c/gc.c)                                            | 1.226              | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                                               |
 | [go.001.unroll](go.001.unroll/gc.go)                   | 1.616              | go version go1.15 linux/amd64                                                                                         |
+| [nim.003.zerocopy](nim.003.zerocopy/gc.go)             | 1.660              | Nim Compiler Version 1.2.6 [Linux: amd64]                                                                             |
+| [nim.002](nim.002/gc.go)                               | 1.703              | Nim Compiler Version 1.2.6 [Linux: amd64]                                                                             |
 | [julia](julia/gc.jl)                                   | 1.926              | julia version 1.5.3                                                                                                   |
 | [go](go/gc.go)                                         | 1.937              | go version go1.15 linux/amd64                                                                                         |
 | [c.003.ril](c.003.ril/gc.c)                            | 1.955              | gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                                               |
@@ -69,9 +71,9 @@ as operating system.
 | [crystal.002.peek](crystal.002.peek/gc.cr)             | 2.369              | Crystal 0.36.1 [c3a3c1823] (2021-02-02)  LLVM: 10.0.0                                                                 |
 | [pypy](pypy/gc.py)                                     | 2.677              | Python 2.7.13 (5.10.0+dfsg-3build2, Feb 06 2018, 18:37:50) [PyPy 5.10.0 with GCC 7.3.0]                               |
 | [cpp](cpp/gc.cpp)                                      | 2.832              | g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0                                                                               |
+| [nim](nim/gc.nim)                                      | 2.976              | Nim Compiler Version 1.2.6 [Linux: amd64]                                                                             |
 | [rust](rust/src/main.rs)                               | 3.195              | rustc 1.52.0-nightly (152f66092 2021-02-17)                                                                           |
 | [crystal](crystal/gc.cr)                               | 4.054              | Crystal 0.36.1 [c3a3c1823] (2021-02-02)  LLVM: 10.0.0                                                                 |
-| [nim](nim/gc.nim)                                      | 4.119              | Nim Compiler Version 1.4.2 [Linux: amd64]                                                                             |
 | [java](java/java/gc.java)                              | 4.279              | openjdk version "11.0.10" 2021-01-19 OpenJDK Runtime Environment GraalVM CE 21.0.0.2 (build 11.0.10+8-jvmci-21.0-b06) |
 | [crystal.001.csp](crystal.001.csp/gc.cr)               | 4.283              | Crystal 0.36.1 [c3a3c1823] (2021-02-02)  LLVM: 10.0.0                                                                 |
 | [java](java/gc.java)                                   | 4.284              | openjdk version "11.0.10" 2021-01-19 OpenJDK Runtime Environment GraalVM CE 21.0.0.2 (build 11.0.10+8-jvmci-21.0-b06) |
