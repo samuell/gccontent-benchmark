@@ -27,7 +27,7 @@ clean:
 		*/gc.bin \
 		*/gc \
 		*/gc.o \
-		cython/gc.c \
+		cython*/gc.c \
 		java/gc.class \
 		nim/nimcache \
 		rust*/target \
@@ -72,6 +72,7 @@ report.md: ada.time ada.version \
 	crystal.001.csp.time crystal.version \
 	crystal.002.peek.time crystal.version \
 	cython.time cython.version \
+	cython.001.fopen.time cython.version \
 	d.time d.version \
 	fpc.time fpc.version \
 	go.time go.version \
@@ -187,6 +188,10 @@ crystal.001.csp/gc: crystal.001.gc/gc.cr
 cython/gc.bin: cython/gc.pyx
 	cython --embed $< \
 		&& gcc -I/usr/include/python2.7 -O3 -o $@ cython/gc.c -lpython2.7
+
+cython%/gc.bin: cython%/gc.pyx
+	cython --embed $< \
+		&& gcc -I/usr/include/python2.7 -O3 -o $@ $(patsubst %.pyx,%.c,$<) -lpython2.7
 
 # D
 %.bin: %.d
