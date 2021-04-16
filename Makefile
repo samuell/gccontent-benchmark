@@ -85,7 +85,9 @@ report.md: ada.time ada.version \
 	node.time node.version \
 	perl.time perl.version \
 	pypy.time pypy.version \
+	pypy.001.binary.time pypy.version \
 	python.time python.version \
+	python.001.binary.time python.version \
 	rust.time rust.version \
 	rust.001.time rust.version \
 	rust.002.bitshift.time rust.version \
@@ -240,10 +242,16 @@ perl/gc.bin: perl/gc.pl
 python/gc.bin: python/gc.py
 	cp $< $@
 
+python%/gc.bin: python%/gc.py
+	cp $< $@
+
 # Pypy
 # We need to copy the pypy script to the canonical path to simplify the e.g.
 # the cleaning rule
 pypy/gc.bin: pypy/gc.py
+	cp $< $@
+
+pypy%/gc.bin: pypy%/gc.py
 	cp $< $@
 
 # Rust
