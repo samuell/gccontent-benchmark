@@ -1,3 +1,5 @@
+# cython: boundscheck=False, wraparound=False, initializedcheck=False, cdivision=True
+
 from libc.stdio cimport fopen, fgets, fclose, FILE
 from libc.stdint cimport uint64_t
 
@@ -11,10 +13,6 @@ value[ord('G')] = value[ord('C')] = 1ull << 32;
 
 
 cpdef void main():
-
-
-
-
     cdef FILE*    f
     cdef double   at
     cdef double   gc
