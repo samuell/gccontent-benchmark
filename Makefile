@@ -27,7 +27,7 @@ clean:
 		*/gc.bin \
 		*/gc \
 		*/gc.o \
-		cython/gc.c \
+		cython*/gc.c \
 		java/gc.class \
 		nim/nimcache \
 		rust*/target \
@@ -72,6 +72,7 @@ report.md: ada.time ada.version \
 	crystal.001.csp.time crystal.version \
 	crystal.002.peek.time crystal.version \
 	cython.time cython.version \
+	cython.001.fopen.time cython.version \
 	d.time d.version \
 	fpc.time fpc.version \
 	go.time go.version \
@@ -85,7 +86,9 @@ report.md: ada.time ada.version \
 	node.time node.version \
 	perl.time perl.version \
 	pypy.time pypy.version \
+	pypy.001.binary.time pypy.version \
 	python.time python.version \
+	python.001.binary.time python.version \
 	rust.time rust.version \
 	rust.001.time rust.version \
 	rust.002.bitshift.time rust.version \
@@ -186,6 +189,10 @@ cython/gc.bin: cython/gc.pyx
 	cython --embed $< \
 		&& gcc -I/usr/include/python2.7 -O3 -o $@ cython/gc.c -lpython2.7
 
+cython%/gc.bin: cython%/gc.pyx
+	cython --embed $< \
+		&& gcc -I/usr/include/python2.7 -O3 -o $@ $(patsubst %.pyx,%.c,$<) -lpython2.7
+
 # D
 %.bin: %.d
 	ldc2 -O5 -boundscheck=off -release -of=$@ $<
@@ -240,10 +247,16 @@ perl/gc.bin: perl/gc.pl
 python/gc.bin: python/gc.py
 	cp $< $@
 
+python%/gc.bin: python%/gc.py
+	cp $< $@
+
 # Pypy
 # We need to copy the pypy script to the canonical path to simplify the e.g.
 # the cleaning rule
 pypy/gc.bin: pypy/gc.py
+	cp $< $@
+
+pypy%/gc.bin: pypy%/gc.py
 	cp $< $@
 
 # Rust
