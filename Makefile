@@ -66,6 +66,7 @@ report.md: ada.time ada.version \
 	c.time c.version \
 	c.001.time c.version \
 	c.003.ril.time c.version \
+	codon.time codon.version \
 	cpp.time cpp.version \
 	cpp.001.time cpp.version \
 	crystal.time crystal.version \
@@ -104,6 +105,8 @@ ada.version:
 	gnat --version | head -n 1 > $@
 c.version:
 	gcc --version | head -n 1 > $@
+codon.version:
+	codon --version |& tr "\n" " " > $@
 cpp.version:
 	g++ --version | head -n 1 > $@
 crystal.version:
@@ -245,6 +248,12 @@ python/gc.bin: python/gc.py
 # the cleaning rule
 pypy/gc.bin: pypy/gc.py
 	cp $< $@
+
+# Codon
+# We need to copy the pypy script to the canonical path to simplify the e.g.
+# the cleaning rule
+codon/gc.bin: codon/gc.py
+	codon build --release -o $@ $<
 
 # Rust
 rust/gc.bin: rust/src/main.rs rust/Cargo.toml
