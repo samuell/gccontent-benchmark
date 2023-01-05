@@ -28,7 +28,7 @@ func main() {
 			continue
 		}
 		// The Count2Bytes() function in
-		//   github.com/grailbio/base/simd/{count.go,count_amd64.s}
+		//   github.com/grailbio/base/simd/count_amd64.{go,s}
 		// illustrates a further Go-accessible SIMD speedup of this
 		// part.  (Yes, I prefer C/C++/Rust intrinsics for SIMD, but Go
 		// doesn't completely lock you out.)
