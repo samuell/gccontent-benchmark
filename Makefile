@@ -76,6 +76,7 @@ report.md: ada.time ada.version \
 	fpc.time fpc.version \
 	go.time go.version \
 	go.001.unroll.time go.version \
+	go.002.time go.version \
 	java.time java.version \
 	graalvm.time graalvm.version \
 	nim.time nim.version \

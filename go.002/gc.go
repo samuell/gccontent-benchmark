@@ -19,9 +19,9 @@ func main() {
 
         cgCount := 0
         acgtCount := 0
-	cSlice := byte({'C'})
-	gSlice := byte({'G'})
-	nSlice := byte({'N'})
+	cSlice := []byte{'C'}
+	gSlice := []byte{'G'}
+	nSlice := []byte{'N'}
 	for scan.Scan() {
 		line := scan.Bytes()
 		if line[0] == '>' {
