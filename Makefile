@@ -38,7 +38,7 @@ clean:
 # ------------------------------------------------
 
 # Set up time command
-TIMECMD=/usr/bin/time -f %e # Use a different time command on MacOS
+TIMECMD=/usr/bin/env time -f %e # Use a different time command on MacOS
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Darwin)
 	TIMECMD=gtime -f %e
