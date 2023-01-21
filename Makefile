@@ -262,25 +262,25 @@ futhark.c/gc.bin: futhark/libgc.fut
 	mkdir -p futhark.c
 	futhark c --library futhark/libgc.fut -o futhark.c/libgc
 	gcc -o futhark.c/libgc.o -c futhark.c/libgc.c -O3
-	gcc -o $@ futhark/gc.c futhark.c/libgc.o -lm
+	gcc -o $@ futhark/gc.c futhark.c/libgc.o -Ifuthark.c -lm
 
 futhark.multicore/gc.bin: futhark/libgc.fut
 	mkdir -p futhark.multicore
 	futhark multicore --library futhark/libgc.fut -o futhark.multicore/libgc
 	gcc -o futhark.multicore/libgc.o -c futhark.multicore/libgc.c -O3 -pthread
-	gcc -o $@ futhark/gc.c futhark.multicore/libgc.o -lm -pthread
+	gcc -o $@ futhark/gc.c futhark.multicore/libgc.o -Ifuthark.multicore -lm -pthread
 
 futhark.opencl/gc.bin: futhark/libgc.fut
 	mkdir -p futhark.opencl
 	futhark opencl --library futhark/libgc.fut -o futhark.opencl/libgc
 	gcc -o futhark.opencl/libgc.o -c futhark.opencl/libgc.c -O3
-	gcc -o $@ futhark/gc.c futhark.opencl/libgc.o -lm -lOpenCL
+	gcc -o $@ futhark/gc.c futhark.opencl/libgc.o -Ifuthark.opencl -lm -lOpenCL
 
 futhark.cuda/gc.bin: futhark/libgc.fut
 	mkdir -p futhark.cuda
 	futhark cuda --library futhark/libgc.fut -o futhark.cuda/libgc
 	gcc -o futhark.cuda/libgc.o -c futhark.cuda/libgc.c -O3
-	gcc -o $@ futhark/gc.c futhark.cuda/libgc.o -lm -lcuda -lcudart -lnvrtc
+	gcc -o $@ futhark/gc.c futhark.cuda/libgc.o -Ifuthark.cuda -lm -lcuda -lcudart -lnvrtc
 
 #TODO: Update
 #pony/gc: pony/gc.pony
