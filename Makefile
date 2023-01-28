@@ -136,6 +136,8 @@ julia.version:
 	julia --version > $@
 java.version:
 	java -version 2>&1 | head -n 2 | tr "\n" " " > $@
+futhark.version:
+	futhark --version
 
 # ------------------------------------------------
 # Get Data
@@ -254,6 +256,31 @@ rust/gc.bin: rust/src/main.rs rust/Cargo.toml
 rust%/gc.bin: rust%/src/main.rs rust%/Cargo.toml
 	RUSTFLAGS="-C target-cpu=native" cargo +nightly build --release --manifest-path $(word 2,$^) -Z unstable-options --out-dir $(shell dirname $@) \
 		&& mv $(basename $@) $@
+
+# Futhark
+futhark.c/gc.bin: futhark/libgc.fut
+	mkdir -p futhark.c
+	futhark c --library futhark/libgc.fut -o futhark.c/libgc
+	gcc -o futhark.c/libgc.o -c futhark.c/libgc.c -O3
+	gcc -o $@ futhark/gc.c futhark.c/libgc.o -Ifuthark.c -lm
+
+futhark.multicore/gc.bin: futhark/libgc.fut
+	mkdir -p futhark.multicore
+	futhark multicore --library futhark/libgc.fut -o futhark.multicore/libgc
+	gcc -o futhark.multicore/libgc.o -c futhark.multicore/libgc.c -O3 -pthread
+	gcc -o $@ futhark/gc.c futhark.multicore/libgc.o -Ifuthark.multicore -lm -pthread
+
+futhark.opencl/gc.bin: futhark/libgc.fut
+	mkdir -p futhark.opencl
+	futhark opencl --library futhark/libgc.fut -o futhark.opencl/libgc
+	gcc -o futhark.opencl/libgc.o -c futhark.opencl/libgc.c -O3
+	gcc -o $@ futhark/gc.c futhark.opencl/libgc.o -Ifuthark.opencl -lm -lOpenCL
+
+futhark.cuda/gc.bin: futhark/libgc.fut
+	mkdir -p futhark.cuda
+	futhark cuda --library futhark/libgc.fut -o futhark.cuda/libgc
+	gcc -o futhark.cuda/libgc.o -c futhark.cuda/libgc.c -O3
+	gcc -o $@ futhark/gc.c futhark.cuda/libgc.o -Ifuthark.cuda -lm -lcuda -lcudart -lnvrtc
 
 #TODO: Update
 #pony/gc: pony/gc.pony
