@@ -35,11 +35,11 @@ def mapop (b: u8) =
   }
 
 def redop (x: summary) (y: summary) =
-  {hasnl = x.hasnl || y.hasnl,
-   befnl = x.befnl,
-   aftnl = if x.comment then count_add x.aftnl y.aftnl
-           else x.aftnl `count_add ` y.befnl `count_add` y.aftnl,
-   comment = y.comment || x.comment && (!y.hasnl)}
+  let join = if x.comment then x.aftnl else x.aftnl `count_add` y.befnl
+  in {befnl = if x.hasnl then x.befnl else x.befnl `count_add` join,
+      aftnl = if x.hasnl then join `count_add` y.aftnl else y.aftnl,
+      hasnl = x.hasnl || y.hasnl,
+      comment = y.comment || x.comment && (!y.hasnl)}
 
 def gc (str: []u8) = reduce redop summary0 (map mapop str)
 
